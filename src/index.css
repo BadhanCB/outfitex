@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@layer utilities {
+    .wrapper {
+        height: 100%;
+        width: 100%;
+        max-width: 1536px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+    /* Tooltip */
+    .tooltip {
+        --scale: 0;
+    }
+    .tooltip::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        padding: 0 0.5rem;
+        border-radius: 0.3rem;
+        font-size: 10px;
+        font-weight: 500;
+        background-color: rgb(30, 50, 50);
+        color: white;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+        top: -0.3rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100%) scale(var(--scale));
+        transition: transform 200ms;
+        transform-origin: bottom center;
+    }
+    .tooltip:hover::before,
+    .tooltip:hover::after {
+        --scale: 1;
+    }
+    .tooltip::after {
+        content: "";
+        border: 10px solid transparent;
+        border-top-color: rgb(30, 50, 50);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(var(--scale));
+        transition: transform 200ms;
+        transform-origin: top center;
+    }
+    /* Animated Bottom Border on Hover */
+    .animated-border-b {
+        position: relative;
+    }
+    .animated-border-b::after {
+        content: "";
+        border-bottom: 2px solid gray;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -0.2rem;
+        transform: scale(0);
+        transform-origin: left center;
+        transition: transform 300ms;
+    }
+    .animated-border-b:hover::after {
+        transform: scale(1);
+    }
+}
