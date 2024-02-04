@@ -1,9 +1,9 @@
+import BannerSection from "./BannerSection";
+
 const Home = () => {
     return (
         <>
-            <section className="h-screen">
-                <p>Home</p>
-            </section>
+            <BannerSection />
         </>
     );
 };
