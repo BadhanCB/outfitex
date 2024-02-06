@@ -8,7 +8,7 @@ const OfferNotificationBar = () => {
         <section
             className={`bg-amber-400 h-10 ${isShowing ? "flex" : "hidden"}`}
         >
-            <div className="wrapper flex items-center px-1 sm:px-2 md:px-4 text-xs sm:text-sm md:text-base">
+            <div className="wrapper w-full flex items-center px-1 sm:px-2 md:px-4 text-xs sm:text-sm md:text-base">
                 <div className="flex-1 text-center flex flex-wrap md:gap-8 justify-center items-center">
                     <p>
                         Free Delivery on orders over $80. Don’t miss discount.
