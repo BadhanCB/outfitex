@@ -7,7 +7,7 @@ import UserInteractionOption from "./UserInteractionOption";
 
 const Navbar = () => {
     return (
-        <header className="sticky -top-10">
+        <header className="sticky -top-10 z-50">
             <OfferNotificationBar />
             {/*Navigation bar */}
             <nav className="bg-white">
