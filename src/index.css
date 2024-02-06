@@ -12,12 +12,9 @@
 
 @layer utilities {
     .wrapper {
-        height: 100%;
-        width: 100%;
-        max-width: 1536px;
-        margin: 0 auto;
-        overflow-x: hidden;
+        @apply w-full h-full max-w-screen-2xl mx-auto overflow-x-hidden;
     }
+
     /* Tooltip */
     .tooltip {
         --scale: 0;
@@ -53,6 +50,7 @@
         transition: transform 200ms;
         transform-origin: top center;
     }
+
     /* Animated Bottom Border on Hover */
     .animated-border-b {
         position: relative;

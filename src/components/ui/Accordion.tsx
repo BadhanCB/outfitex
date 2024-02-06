@@ -20,12 +20,12 @@ const Accordion = ({
     children,
     className,
 }: Props) => {
-    const [contentWidth, setContentWidth] = useState(0);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ref = useRef<any>(null);
+    const [contentHeight, setContentHeight] = useState(0);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        setContentWidth(ref?.current?.offsetHeight | 0);
+        const divElem = ref.current;
+        setContentHeight(divElem?.offsetHeight || 0);
     }, [ref]);
 
     return (
@@ -33,7 +33,7 @@ const Accordion = ({
             style={{
                 maxHeight:
                     selectedCategory === id
-                        ? `calc(${contentWidth}px + 1.5rem)`
+                        ? `calc(${contentHeight}px + 1.5rem)`
                         : "1.5rem",
             }}
             className={`text-2xl transition-[max-height] ${className} overflow-hidden`}
