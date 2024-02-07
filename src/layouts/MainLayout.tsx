@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
     return (
-        <div className="bg-gray-50 font-urbanist">
+        <div className="font-urbanist">
             <Navbar />
             <main>
                 <Suspense fallback={<Skeleton />}>
