@@ -10,47 +10,47 @@ const TopSellingProducts = () => {
         },
         {
             name: "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
-            price: "23234",
+            price: "14141",
             img: "https://cdn.pixabay.com/photo/2016/03/23/04/01/woman-1274056_640.jpg",
         },
         {
             name: "Asperiores commodi quis temporibus excepturi",
-            price: "23234",
+            price: "75757",
             img: "https://cdn.pixabay.com/photo/2017/10/01/19/10/woman-2806675_640.jpg",
         },
         {
             name: "amet magni et fuga quo tempore",
-            price: "23234",
+            price: "86686",
             img: "https://cdn.pixabay.com/photo/2021/03/30/08/56/woman-6136425_640.jpg",
         },
         {
             name: "Vitae nam soluta rem iusto beatae",
-            price: "23234",
+            price: "79797",
             img: "https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267_640.jpg",
         },
         {
             name: "asdkja dsah dflhaskl dfl",
-            price: "23234",
+            price: "2772",
             img: "https://cdn.pixabay.com/photo/2021/07/19/03/40/woman-6477110_640.jpg",
         },
         {
             name: "asdkja dsah dflhaskl dfl",
-            price: "23234",
+            price: "58456",
             img: "https://cdn.pixabay.com/photo/2022/01/23/08/29/indian-woman-6960124_640.jpg",
         },
         {
             name: "asdkja dsah dflhaskl dfl",
-            price: "23234",
+            price: "89783",
             img: "https://cdn.pixabay.com/photo/2017/06/15/22/05/woman-2406963_640.jpg",
         },
         {
             name: "asdkja dsah dflhaskl dfl",
-            price: "23234",
+            price: "4121",
             img: "https://cdn.pixabay.com/photo/2017/05/31/04/59/beautiful-2359121_640.jpg",
         },
         {
             name: "asdkja dsah dflhaskl dfl",
-            price: "23234",
+            price: "9234",
             img: "https://cdn.pixabay.com/photo/2022/05/24/06/23/indian-face-7217718_640.jpg",
         },
     ];
@@ -76,9 +76,9 @@ const TopSellingProducts = () => {
 
     return (
         <section className="wrapper my-20 px-4 md:px-8 lg:px-12">
-            <h1 className="text-2xl md:text-2xl lg:text-4xl text-center">
+            <h2 className="text-2xl md:text-2xl lg:text-4xl text-center">
                 Our Best Selling Items
-            </h1>
+            </h2>
             <p className="text-lg text-center">Product in focus</p>
             <div className="mt-8 relative">
                 <div className="carousel grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-scroll scroll-smooth snap-mandatory snap-x">
