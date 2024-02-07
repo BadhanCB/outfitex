@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProductCard from "./ProductCard";
+import LatestProductCard from "./LatestProductCard";
 
 const LatestProducts = () => {
     const [category, setCategory] = useState<string>("");
@@ -142,11 +142,17 @@ const LatestProducts = () => {
                         {products.map((pd) => {
                             if (!category) {
                                 return (
-                                    <ProductCard key={pd._id} product={pd} />
+                                    <LatestProductCard
+                                        key={pd._id}
+                                        product={pd}
+                                    />
                                 );
                             } else if (pd.category === category) {
                                 return (
-                                    <ProductCard key={pd._id} product={pd} />
+                                    <LatestProductCard
+                                        key={pd._id}
+                                        product={pd}
+                                    />
                                 );
                             }
                         })}
