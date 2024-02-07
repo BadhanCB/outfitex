@@ -1,6 +1,7 @@
 import BannerSection from "./BannerSection";
 import BrandPartners from "./BrandPartners";
 import CategorySection from "./CategorySection";
+import ServiceOffer from "./ServiceOffer";
 import TopSellingProducts from "./TopSellingProducts";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             <CategorySection />
             <BrandPartners />
             <TopSellingProducts />
+            <ServiceOffer />
         </>
     );
 };

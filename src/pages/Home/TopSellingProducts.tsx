@@ -75,7 +75,7 @@ const TopSellingProducts = () => {
     };
 
     return (
-        <section className="wrapper my-12 px-4 md:px-8 lg:px-12">
+        <section className="wrapper my-20 px-4 md:px-8 lg:px-12">
             <h1 className="text-2xl md:text-2xl lg:text-4xl text-center">
                 Our Best Selling Items
             </h1>
