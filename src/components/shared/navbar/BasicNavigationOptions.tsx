@@ -6,6 +6,14 @@ const BasicNavigationOptions = () => {
             <li>
                 <Link
                     className="hover:text-amber-400 transition-colors animated-border-b"
+                    to="/"
+                >
+                    Home
+                </Link>
+            </li>
+            <li>
+                <Link
+                    className="hover:text-amber-400 transition-colors animated-border-b"
                     to="/shop"
                 >
                     Shop
