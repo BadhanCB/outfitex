@@ -139,23 +139,21 @@ const LatestProducts = () => {
                         </li>
                     </ul>
                     <div className="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        {products.map((pd) => {
-                            if (!category) {
-                                return (
-                                    <LatestProductCard
-                                        key={pd._id}
-                                        product={pd}
-                                    />
-                                );
-                            } else if (pd.category === category) {
-                                return (
-                                    <LatestProductCard
-                                        key={pd._id}
-                                        product={pd}
-                                    />
-                                );
-                            }
-                        })}
+                        {!category
+                            ? products.map((pd) => (
+                                  <LatestProductCard
+                                      key={pd._id}
+                                      product={pd}
+                                  />
+                              ))
+                            : products
+                                  .filter((pd) => pd.category === category)
+                                  .map((pd) => (
+                                      <LatestProductCard
+                                          key={pd._id}
+                                          product={pd}
+                                      />
+                                  ))}
                     </div>
                 </div>
             </div>
