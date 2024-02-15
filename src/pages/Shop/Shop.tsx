@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
-import { products, productsType } from "../../lib/constents";
-import LatestProductCard from "../Home/LatestProductCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ShopProductCard from "./ShopProductCard";
+import { Product, ProductResponseData } from "../../types";
+import { productsType } from "../../lib/constents";
 
 const Shop = () => {
-    const [gridColNum, setGridColNum] = useState("grid-cols-3");
+    const [colNum, setColNum] = useState<number>(3);
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5379/products")
+            .then((res) => res.json())
+            .then((data: ProductResponseData) => setProducts(data.products));
+    }, []);
 
     return (
         <>
@@ -48,36 +56,98 @@ const Shop = () => {
                     <div className="w-full flex flex-wrap gap-6 items-center">
                         <div className="flex gap-3">
                             <button
-                                onClick={() => setGridColNum("grid-cols-2")}
-                                className="flex gap-[2px] p-2 border rounded"
+                                onClick={() => setColNum(2)}
+                                className={`flex gap-[2px] p-2 border rounded ${
+                                    colNum === 2 && "bg-slate-800"
+                                }`}
                             >
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 2 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 2 && "bg-gray-50"
+                                    }`}
+                                ></div>
                             </button>
                             <button
-                                onClick={() => setGridColNum("grid-cols-3")}
-                                className="flex gap-[2px] p-2 border rounded"
+                                onClick={() => setColNum(3)}
+                                className={`flex gap-[2px] p-2 border rounded ${
+                                    colNum === 3 && "bg-slate-800"
+                                }`}
                             >
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 3 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 3 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 3 && "bg-gray-50"
+                                    }`}
+                                ></div>
                             </button>
                             <button
-                                onClick={() => setGridColNum("grid-cols-4")}
-                                className="flex gap-[2px] p-2 border rounded"
+                                onClick={() => setColNum(4)}
+                                className={`flex gap-[2px] p-2 border rounded ${
+                                    colNum === 4 && "bg-slate-800"
+                                }`}
                             >
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
-                                <div className="w-1 h-4 bg-gray-400"></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 4 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 4 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 4 && "bg-gray-50"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-1 h-4 bg-gray-400 ${
+                                        colNum === 4 && "bg-gray-50"
+                                    }`}
+                                ></div>
                             </button>
                             <button
-                                onClick={() => setGridColNum("grid-cols-1")}
-                                className="flex flex-col gap-[2px] p-2 border rounded"
+                                onClick={() => setColNum(1)}
+                                className={`flex flex-col gap-[2px] p-2 border rounded ${
+                                    colNum === 1 && "bg-slate-800"
+                                }`}
                             >
-                                <div className="w-6 h-1 bg-gray-400"></div>
-                                <div className="w-6 h-1 bg-gray-400"></div>
-                                <div className="w-6 h-1 bg-gray-400"></div>
+                                <div
+                                    className={`w-6 h-1 ${
+                                        colNum === 1
+                                            ? "bg-gray-50"
+                                            : "bg-gray-400"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-6 h-1 ${
+                                        colNum === 1
+                                            ? "bg-gray-50"
+                                            : "bg-gray-400"
+                                    }`}
+                                ></div>
+                                <div
+                                    className={`w-6 h-1 ${
+                                        colNum === 1
+                                            ? "bg-gray-50"
+                                            : "bg-gray-400"
+                                    }`}
+                                ></div>
                             </button>
                         </div>
                         <p className="grow text-center">
@@ -96,9 +166,23 @@ const Shop = () => {
                             </select>
                         </div>
                     </div>
-                    <div className={`grid ${gridColNum} mt-12 gap-8`}>
+                    <div
+                        className={`grid ${
+                            colNum === 1
+                                ? "grid-cols-1"
+                                : colNum === 2
+                                ? "grid-cols-2"
+                                : colNum === 3
+                                ? "grid-cols-3"
+                                : colNum === 4 && "grid-cols-4"
+                        } mt-12 gap-8`}
+                    >
                         {products.map((pd) => (
-                            <LatestProductCard key={pd._id} product={pd} />
+                            <ShopProductCard
+                                key={pd._id}
+                                product={pd}
+                                colNum={colNum}
+                            />
                         ))}
                     </div>
                 </div>

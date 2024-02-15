@@ -8,6 +8,11 @@ const Shop = lazy(() => import("./pages/Shop/Shop"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const About = lazy(() => import("./pages/About/About"));
 const Wishlist = lazy(() => import("./pages/Wishlist/Wishlist"));
+const InventoryLayout = lazy(() => import("./layouts/InventoryLayout"));
+const InventoryOverview = lazy(
+    () => import("./pages/InventoryOverview/InventoryOverview")
+);
+const AddProduct = lazy(() => import("./pages/AddProduct/AddProduct"));
 
 function App() {
     const router = createBrowserRouter([
@@ -34,6 +39,17 @@ function App() {
                 {
                     path: "/wishlist",
                     element: <Wishlist />,
+                },
+                {
+                    path: "/inventory",
+                    element: <InventoryLayout />,
+                    children: [
+                        { index: true, element: <InventoryOverview /> },
+                        {
+                            path: "/inventory/add-product",
+                            element: <AddProduct />,
+                        },
+                    ],
                 },
             ],
         },

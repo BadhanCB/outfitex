@@ -35,6 +35,14 @@ const BasicNavigationOptions = () => {
                     About
                 </Link>
             </li>
+            <li>
+                <Link
+                    className="hover:text-amber-400 transition-colors animated-border-b"
+                    to="/inventory"
+                >
+                    Inventory
+                </Link>
+            </li>
         </div>
     );
 };
