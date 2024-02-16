@@ -3,6 +3,7 @@ import loginImg from "../../assets/images/login.svg";
 import { FormEvent, FormEventHandler } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import { setTokenToCookie } from "../../lib/utils";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Login = () => {
                 if (data.info) {
                     toast.success(data.message);
                     setUser(data.info);
+                    setTokenToCookie(data.token);
                     navigate("/shop", { replace: true });
                 }
             } else {

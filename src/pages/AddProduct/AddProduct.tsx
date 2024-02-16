@@ -1,5 +1,9 @@
 import { FormEvent, FormEventHandler, useState } from "react";
-import { FiUpload } from "react-icons/fi";
+import toast from "react-hot-toast";
+import { FiLoader, FiUpload } from "react-icons/fi";
+import { getTokenFromCookie } from "../../lib/utils";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 type formInputType = {
     name: { value: string };
@@ -10,12 +14,16 @@ type formInputType = {
 };
 
 const AddProduct = () => {
+    const [isLoading, setIsloading] = useState(false);
     const [imageFile, setImageFile] = useState<FileList | null>(null);
+    const { setUser } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (
         e: FormEvent<HTMLFormElement>
     ) => {
         e.preventDefault();
+        setIsloading(true);
         try {
             const form = e.target as HTMLFormElement & formInputType;
 
@@ -33,7 +41,9 @@ const AddProduct = () => {
                 !description ||
                 !imageFile
             ) {
-                alert("Fill all input of the form");
+                toast.error("Fill all input of the form");
+                setIsloading(false);
+                return;
             } else {
                 const formData: FormData = new FormData();
                 formData.append("file", imageFile[0]);
@@ -43,15 +53,35 @@ const AddProduct = () => {
                 formData.append("collection", collection);
                 formData.append("description", description);
 
+                const token = getTokenFromCookie();
+                if (!token) {
+                    toast.error("You are not verified!!!\nPlease Login again");
+                    setUser({});
+                    setIsloading(false);
+                    navigate("/login");
+                    return;
+                }
+
                 const res = await fetch("http://localhost:5379/products", {
                     method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                     body: formData,
                 });
 
+                if (!res.ok) {
+                    const data: { message: string } = await res.json();
+                    toast.error(data.message);
+                    setIsloading(false);
+                    return;
+                }
+
                 const data: { message: string } = await res.json();
-                alert(data.message);
+                toast.success(data.message);
 
                 setImageFile(null);
+                setIsloading(false);
                 form.reset();
             }
         } catch (error) {
@@ -59,7 +89,8 @@ const AddProduct = () => {
             if (error instanceof Error) {
                 errorMessage = error.message;
             }
-            alert(errorMessage);
+            toast.error(errorMessage);
+            setIsloading(false);
         }
     };
 
@@ -150,13 +181,15 @@ const AddProduct = () => {
                         className="w-full h-72 bg-gray-50 p-4 rounded-md focus:outline-none"
                         placeholder="Product Description"
                     ></textarea>
-                    <button
-                        type="submit"
-                        className="px-8 py-3 mt-4 bg-orange-500 text-gray-50 hover:bg-orange-400 uppercase rounded-md block ml-auto"
-                    >
-                        Submit Product
-                    </button>
                 </div>
+                <button
+                    disabled={isLoading}
+                    type="submit"
+                    className="px-8 py-3 mt-4 bg-orange-500 text-gray-50 hover:bg-orange-400 uppercase rounded-md flex items-center gap-2"
+                >
+                    {isLoading && <FiLoader className="animate-spin" />}
+                    {isLoading ? "Submitting..." : "Submit Product"}
+                </button>
             </form>
         </div>
     );
