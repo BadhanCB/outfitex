@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./providers/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import SellerPrivateRoute from "./routes/SellerPrivateRoute";
+import UserPrivateRoute from "./routes/UserPrivateRoute";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
@@ -50,7 +52,11 @@ function App() {
                 },
                 {
                     path: "/inventory",
-                    element: <InventoryLayout />,
+                    element: (
+                        <SellerPrivateRoute>
+                            <InventoryLayout />
+                        </SellerPrivateRoute>
+                    ),
                     children: [
                         { index: true, element: <InventoryOverview /> },
                         {
@@ -61,7 +67,11 @@ function App() {
                 },
                 {
                     path: "/dashboard",
-                    element: <Dashboard />,
+                    element: (
+                        <UserPrivateRoute>
+                            <Dashboard />
+                        </UserPrivateRoute>
+                    ),
                 },
                 {
                     path: "/login",
