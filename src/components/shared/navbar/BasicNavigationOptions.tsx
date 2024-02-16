@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const BasicNavigationOptions = () => {
+    const { user } = useAuth();
+
     return (
         <div className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto">
             <li>
@@ -35,14 +38,36 @@ const BasicNavigationOptions = () => {
                     About
                 </Link>
             </li>
-            <li>
-                <Link
-                    className="hover:text-amber-400 transition-colors animated-border-b"
-                    to="/inventory"
-                >
-                    Inventory
-                </Link>
-            </li>
+            {user?.role === "user" ? (
+                <li>
+                    <Link
+                        className="hover:text-amber-400 transition-colors animated-border-b"
+                        to="/dashboard"
+                    >
+                        Dashboard
+                    </Link>
+                </li>
+            ) : user?.role === "seller" ? (
+                <li>
+                    <Link
+                        className="hover:text-amber-400 transition-colors animated-border-b"
+                        to="/inventory"
+                    >
+                        Inventory
+                    </Link>
+                </li>
+            ) : (
+                user?.role === "admin" && (
+                    <li>
+                        <Link
+                            className="hover:text-amber-400 transition-colors animated-border-b"
+                            to="/admin-panel"
+                        >
+                            Admin Panel
+                        </Link>
+                    </li>
+                )
+            )}
         </div>
     );
 };

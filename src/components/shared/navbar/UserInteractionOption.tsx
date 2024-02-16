@@ -1,8 +1,17 @@
-import { FiHeart, FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
+import {
+    FiHeart,
+    FiLogIn,
+    FiSearch,
+    FiShoppingCart,
+    FiUser,
+} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Badge from "../../ui/Badge";
+import useAuth from "../../../hooks/useAuth";
 
 const UserInteractionOption = () => {
+    const { user } = useAuth();
+
     return (
         <div className="flex items-center gap-4 font-normal">
             <li className="flex lg:border rounded-lg lg:px-8">
@@ -18,12 +27,22 @@ const UserInteractionOption = () => {
                 </button>
             </li>
             <li>
-                <button
-                    className="m-0 align-middle relative tooltip"
-                    data-tooltip="Profile"
-                >
-                    <FiUser className="text-2xl hover:text-amber-400 transition-colors" />
-                </button>
+                {user?.email ? (
+                    <button
+                        className="m-0 align-middle relative tooltip"
+                        data-tooltip="Profile"
+                    >
+                        <FiUser className="text-2xl hover:text-amber-400 transition-colors" />
+                    </button>
+                ) : (
+                    <Link
+                        to="/login"
+                        className="m-0 align-middle relative tooltip"
+                        data-tooltip="Login"
+                    >
+                        <FiLogIn className="text-2xl hover:text-amber-400 transition-colors" />
+                    </Link>
+                )}
             </li>
             <li className="hidden md:list-item">
                 <Link

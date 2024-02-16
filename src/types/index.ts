@@ -17,3 +17,17 @@ export type ProductResponseData = {
     products: Product[];
     total: number;
 };
+
+export type UserType = {
+    _id?: string;
+    name?: string;
+    userName?: string;
+    address?: string;
+    phone?: string;
+    email?: string;
+    photo?: {
+        data?: string;
+        type?: string;
+    };
+    role?: string;
+};

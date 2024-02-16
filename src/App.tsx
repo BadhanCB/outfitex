@@ -2,6 +2,9 @@ import { lazy } from "react";
 import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthProvider from "./providers/AuthProvider";
+import { Toaster } from "react-hot-toast";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
@@ -13,6 +16,11 @@ const InventoryOverview = lazy(
     () => import("./pages/InventoryOverview/InventoryOverview")
 );
 const AddProduct = lazy(() => import("./pages/AddProduct/AddProduct"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const Signup = lazy(() => import("./pages/Signup/Signup"));
+const SellerRegistration = lazy(
+    () => import("./pages/SellerRegistration/SellerRegistration")
+);
 
 function App() {
     const router = createBrowserRouter([
@@ -51,11 +59,32 @@ function App() {
                         },
                     ],
                 },
+                {
+                    path: "/dashboard",
+                    element: <Dashboard />,
+                },
+                {
+                    path: "/login",
+                    element: <Login />,
+                },
+                {
+                    path: "/signup",
+                    element: <Signup />,
+                },
+                {
+                    path: "/seller-registration",
+                    element: <SellerRegistration />,
+                },
             ],
         },
     ]);
 
-    return <RouterProvider router={router} />;
+    return (
+        <AuthProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+        </AuthProvider>
+    );
 }
 
 export default App;
