@@ -6,6 +6,7 @@ interface IAUTH_Context {
     setUser: Dispatch<SetStateAction<UserType>>;
     isLoading: boolean;
     setIsLoading: Dispatch<SetStateAction<boolean>>;
+    logout: () => void;
 }
 
 export const AUTH_CONTEXT = createContext<IAUTH_Context>({
@@ -13,4 +14,5 @@ export const AUTH_CONTEXT = createContext<IAUTH_Context>({
     setUser: () => {},
     isLoading: false,
     setIsLoading: () => {},
+    logout: () => {},
 });

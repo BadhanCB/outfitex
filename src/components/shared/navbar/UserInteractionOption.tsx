@@ -1,19 +1,14 @@
-import {
-    FiHeart,
-    FiLogIn,
-    FiSearch,
-    FiShoppingCart,
-    FiUser,
-} from "react-icons/fi";
+import { FiHeart, FiLogIn, FiSearch, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Badge from "../../ui/Badge";
 import useAuth from "../../../hooks/useAuth";
+import UserProfileBasicOption from "./UserProfileBasicOption";
 
 const UserInteractionOption = () => {
     const { user } = useAuth();
 
     return (
-        <div className="flex items-center gap-4 font-normal">
+        <div className="flex items-center gap-2 md:gap-4 font-normal">
             <li className="flex lg:border rounded-lg xl:px-8">
                 <input
                     type="text"
@@ -28,12 +23,7 @@ const UserInteractionOption = () => {
             </li>
             <li>
                 {user?.email ? (
-                    <button
-                        className="m-0 align-middle relative tooltip"
-                        data-tooltip="Profile"
-                    >
-                        <FiUser className="text-2xl hover:text-amber-400 transition-colors" />
-                    </button>
+                    <UserProfileBasicOption />
                 ) : (
                     <Link
                         to="/login"

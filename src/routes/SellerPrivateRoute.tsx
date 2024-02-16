@@ -13,12 +13,8 @@ const SellerPrivateRoute = ({ children }: Props) => {
         return <Skeleton />;
     }
 
-    if (user.email) {
+    if (user.email && user.role === "seller") {
         return children;
-    }
-
-    if (user.role !== "seller") {
-        return <p>You are not a seller. Become a seller now!!!</p>;
     }
 
     //Navigate operation must be in the last

@@ -9,3 +9,7 @@ export const getTokenFromCookie = () => {
         ?.split("=")[1];
     return token;
 };
+
+export const clearTokenCookie = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+};

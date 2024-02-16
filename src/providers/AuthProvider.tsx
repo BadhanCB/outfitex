@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { AUTH_CONTEXT } from "../contexts/contexts";
 import { UserType } from "../types";
-import { getTokenFromCookie, setTokenToCookie } from "../lib/utils";
+import {
+    clearTokenCookie,
+    getTokenFromCookie,
+    setTokenToCookie,
+} from "../lib/utils";
 import toast from "react-hot-toast";
 
 type Props = {
@@ -33,9 +37,14 @@ const AuthProvider = ({ children }: Props) => {
         }
     }, []);
 
+    const logout = () => {
+        setUser({});
+        clearTokenCookie();
+    };
+
     return (
         <AUTH_CONTEXT.Provider
-            value={{ user, setUser, isLoading, setIsLoading }}
+            value={{ user, setUser, isLoading, setIsLoading, logout }}
         >
             {children}
         </AUTH_CONTEXT.Provider>

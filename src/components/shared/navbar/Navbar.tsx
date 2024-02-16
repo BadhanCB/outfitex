@@ -11,7 +11,7 @@ const Navbar = () => {
             <OfferNotificationBar />
             {/*Navigation bar */}
             <nav className="bg-white">
-                <ul className="wrapper flex items-center md:gap-8 lg:gap-12 xl:gap-16 px-1 sm:px-2 md:px-4 py-4">
+                <ul className="max-w-screen-2xl mx-auto flex items-center md:gap-8 lg:gap-12 xl:gap-16 px-1 sm:px-2 md:px-4 py-4">
                     <div className="flex-1 md:flex-none flex gap-2 md:gap-4 lg:gap-6 items-center">
                         {/* Left side bar for category */}
                         <LeftSideBar />

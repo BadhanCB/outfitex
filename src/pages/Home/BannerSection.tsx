@@ -76,7 +76,7 @@ const BannerSection = () => {
     return (
         <section
             style={{ backgroundImage: `url(${backgroundImg})` }}
-            className="bg-cover bg-center bg-no-repeat relative"
+            className="bg-cover bg-center bg-no-repeat relative -z-10"
         >
             <div className="wrapper min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-118px)] 2xl:min-h-fit w-full flex flex-nowrap items-center overflow-hidden">
                 {bannerItems.map((itm) => (
