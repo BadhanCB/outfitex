@@ -14,13 +14,13 @@ const UserInteractionOption = () => {
 
     return (
         <div className="flex items-center gap-4 font-normal">
-            <li className="flex lg:border rounded-lg lg:px-8">
+            <li className="flex lg:border rounded-lg xl:px-8">
                 <input
                     type="text"
                     name="search"
                     id="search"
                     placeholder="Search entire store here..."
-                    className="bg-transparent focus:outline-none p-2 text-lg hidden lg:inline-block"
+                    className="bg-transparent focus:outline-none p-2 pr-0 text-lg hidden xl:inline-block"
                 />
                 <button className="bg-transparent lg:p-2 text-2xl">
                     <FiSearch />

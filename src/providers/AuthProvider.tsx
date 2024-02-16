@@ -10,9 +10,11 @@ type Props = {
 
 const AuthProvider = ({ children }: Props) => {
     const [user, setUser] = useState<UserType>({});
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (getTokenFromCookie()) {
+            setIsLoading(true);
             fetch("http://localhost:5379/authenticate-with-jwt", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromCookie()}`,
@@ -22,15 +24,19 @@ const AuthProvider = ({ children }: Props) => {
                 .then((data) => {
                     setUser(data.info);
                     setTokenToCookie(data.token);
+                    setIsLoading(false);
                 })
                 .catch(() => {
                     toast.error("Failed to authenticate");
+                    setIsLoading(false);
                 });
         }
     }, []);
 
     return (
-        <AUTH_CONTEXT.Provider value={{ user, setUser }}>
+        <AUTH_CONTEXT.Provider
+            value={{ user, setUser, isLoading, setIsLoading }}
+        >
             {children}
         </AUTH_CONTEXT.Provider>
     );
