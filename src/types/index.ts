@@ -57,3 +57,22 @@ export type CartItemType = {
     };
     seller?: object;
 };
+
+export type Order = {
+    products: {
+        _id?: string;
+        name?: string;
+        price?: number;
+        quantity?: number;
+        seller?: object;
+    }[];
+    buyer: {
+        _id?: string;
+        name?: string;
+        userName?: string;
+        address?: string;
+        email?: string;
+        phone?: string;
+    };
+    totalPayableAmount?: number;
+};
