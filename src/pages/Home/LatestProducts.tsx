@@ -1,9 +1,16 @@
-import { useState } from "react";
-import LatestProductCard from "./LatestProductCard";
-import { products } from "../../lib/constents";
+import { useEffect, useState } from "react";
+import { Product } from "../../types";
+import ProductCard from "../../components/shared/ProductCard/ProductCard";
 
 const LatestProducts = () => {
-    const [category, setCategory] = useState<string>("");
+    const [collection, setCollection] = useState<string>("");
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5379/products/latest")
+            .then((res) => res.json())
+            .then((data) => setProducts(data));
+    }, []);
 
     return (
         <section className="bg-gray-100 py-20">
@@ -18,70 +25,64 @@ const LatestProducts = () => {
                     <ul className="flex gap-4 md:gap-8 justify-center items-center uppercase text-base md:text-xl font-medium">
                         <li
                             className={`cursor-pointer  ${
-                                !category
+                                !collection
                                     ? "text-teal-700 border-b border-gray-600"
                                     : "text-slate-400"
                             } hover:text-slate-700`}
-                            onClick={() => setCategory("")}
+                            onClick={() => setCollection("")}
                         >
                             All
                         </li>
                         <li
                             className={`cursor-pointer  ${
-                                category === "women"
+                                collection === "women"
                                     ? "text-teal-700 border-b border-gray-600"
                                     : "text-slate-400"
                             } hover:text-slate-700`}
-                            onClick={() => setCategory("women")}
+                            onClick={() => setCollection("women")}
                         >
                             Women
                         </li>
                         <li
                             className={`cursor-pointer  ${
-                                category === "men"
+                                collection === "men"
                                     ? "text-teal-700 border-b border-gray-600"
                                     : "text-slate-400"
                             } hover:text-slate-700`}
-                            onClick={() => setCategory("men")}
+                            onClick={() => setCollection("men")}
                         >
                             Men
                         </li>
                         <li
                             className={`cursor-pointer  ${
-                                category === "kids"
+                                collection === "kids"
                                     ? "text-teal-700 border-b border-gray-600"
                                     : "text-slate-400"
                             } hover:text-slate-700`}
-                            onClick={() => setCategory("kids")}
+                            onClick={() => setCollection("kids")}
                         >
                             Kids
                         </li>
                         <li
                             className={`cursor-pointer  ${
-                                category === "accesories"
+                                collection === "accesories"
                                     ? "text-teal-700 border-b border-gray-600"
                                     : "text-slate-400"
                             } hover:text-slate-700`}
-                            onClick={() => setCategory("accesories")}
+                            onClick={() => setCollection("accesories")}
                         >
                             Accesories
                         </li>
                     </ul>
                     <div className="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        {!category
+                        {!collection
                             ? products.map((pd) => (
-                                  <LatestProductCard
-                                      key={pd._id}
-                                      product={pd}
-                                  />
+                                  <ProductCard key={pd._id} product={pd} />
                               ))
                             : products
-                                  .filter((pd) => pd.category === category)
+                                  .filter((pd) => pd.collection === collection)
                                   .map((pd) => (
-                                      <LatestProductCard
-                                          key={pd._id}
-                                          product={pd}
-                                      />
+                                      <ProductCard key={pd._id} product={pd} />
                                   ))}
                     </div>
                 </div>

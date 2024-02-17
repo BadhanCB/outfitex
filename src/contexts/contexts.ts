@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from "react";
-import { UserType } from "../types";
+import { CartItemType, UserType } from "../types";
 
 interface IAUTH_Context {
     user: UserType;
@@ -7,6 +7,8 @@ interface IAUTH_Context {
     isLoading: boolean;
     setIsLoading: Dispatch<SetStateAction<boolean>>;
     logout: () => void;
+    cart: CartItemType[];
+    setCart: Dispatch<SetStateAction<CartItemType[]>>;
 }
 
 export const AUTH_CONTEXT = createContext<IAUTH_Context>({
@@ -15,4 +17,6 @@ export const AUTH_CONTEXT = createContext<IAUTH_Context>({
     isLoading: false,
     setIsLoading: () => {},
     logout: () => {},
+    cart: [],
+    setCart: () => {},
 });

@@ -10,10 +10,10 @@ import UserPrivateRoute from "./routes/UserPrivateRoute";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
+const SingleProduct = lazy(() => import("./pages/SingleProduct/SingleProduct"));
 const Collection = lazy(() => import("./pages/Collection/Collection"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const About = lazy(() => import("./pages/About/About"));
-const Wishlist = lazy(() => import("./pages/Wishlist/Wishlist"));
 const InventoryLayout = lazy(() => import("./layouts/InventoryLayout"));
 const InventoryOverview = lazy(
     () => import("./pages/InventoryOverview/InventoryOverview")
@@ -24,6 +24,11 @@ const Signup = lazy(() => import("./pages/Signup/Signup"));
 const SellerRegistration = lazy(
     () => import("./pages/SellerRegistration/SellerRegistration")
 );
+const Overview = lazy(() => import("./pages/Overview/Overview"));
+const Wishlist = lazy(() => import("./pages/Wishlist/Wishlist"));
+const Cart = lazy(() => import("./pages/Cart/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
+const Orders = lazy(() => import("./pages/Orders/Orders"));
 
 function App() {
     const router = createBrowserRouter([
@@ -40,6 +45,14 @@ function App() {
                     element: <Shop />,
                 },
                 {
+                    path: "/product/:slug",
+                    element: <SingleProduct />,
+                    loader: async ({ params }) =>
+                        await fetch(
+                            `http://localhost:5379/product/${params.slug}`
+                        ),
+                },
+                {
                     path: "/collection/:collname",
                     element: <Collection />,
                     loader: async ({ params }) =>
@@ -54,10 +67,6 @@ function App() {
                 {
                     path: "/about",
                     element: <About />,
-                },
-                {
-                    path: "/wishlist",
-                    element: <Wishlist />,
                 },
                 {
                     path: "/inventory",
@@ -81,7 +90,14 @@ function App() {
                             <Dashboard />
                         </UserPrivateRoute>
                     ),
+                    children: [
+                        { index: true, element: <Overview /> },
+                        { path: "/dashboard/orders", element: <Orders /> },
+                        { path: "/dashboard/checkout", element: <Checkout /> },
+                    ],
                 },
+                { path: "/cart", element: <Cart /> },
+                { path: "/wishlist", element: <Wishlist /> },
                 {
                     path: "/login",
                     element: <Login />,

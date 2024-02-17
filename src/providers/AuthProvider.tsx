@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AUTH_CONTEXT } from "../contexts/contexts";
-import { UserType } from "../types";
+import { CartItemType, UserType } from "../types";
 import {
     clearTokenCookie,
     getTokenFromCookie,
@@ -15,6 +15,7 @@ type Props = {
 const AuthProvider = ({ children }: Props) => {
     const [user, setUser] = useState<UserType>({});
     const [isLoading, setIsLoading] = useState(false);
+    const [cart, setCart] = useState<CartItemType[]>([]);
 
     useEffect(() => {
         if (getTokenFromCookie()) {
@@ -44,7 +45,15 @@ const AuthProvider = ({ children }: Props) => {
 
     return (
         <AUTH_CONTEXT.Provider
-            value={{ user, setUser, isLoading, setIsLoading, logout }}
+            value={{
+                user,
+                setUser,
+                isLoading,
+                setIsLoading,
+                logout,
+                cart,
+                setCart,
+            }}
         >
             {children}
         </AUTH_CONTEXT.Provider>

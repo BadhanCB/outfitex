@@ -45,3 +45,15 @@ export type UserType = {
     corporateAddress?: string;
     nidNumber?: string;
 };
+
+export type CartItemType = {
+    _id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: {
+        data: string;
+        type: string;
+    };
+    seller: object;
+};

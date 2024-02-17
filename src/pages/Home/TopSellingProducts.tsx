@@ -1,64 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Product } from "../../types";
 
 const TopSellingProducts = () => {
-    const products = [
-        {
-            name: "error quibusdam sed obcaecati recusandae",
-            price: "23234",
-            img: "https://cdn.pixabay.com/photo/2021/07/19/04/36/woman-6477171_640.jpg",
-        },
-        {
-            name: "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
-            price: "14141",
-            img: "https://cdn.pixabay.com/photo/2016/03/23/04/01/woman-1274056_640.jpg",
-        },
-        {
-            name: "Asperiores commodi quis temporibus excepturi",
-            price: "75757",
-            img: "https://cdn.pixabay.com/photo/2017/10/01/19/10/woman-2806675_640.jpg",
-        },
-        {
-            name: "amet magni et fuga quo tempore",
-            price: "86686",
-            img: "https://cdn.pixabay.com/photo/2021/03/30/08/56/woman-6136425_640.jpg",
-        },
-        {
-            name: "Vitae nam soluta rem iusto beatae",
-            price: "79797",
-            img: "https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267_640.jpg",
-        },
-        {
-            name: "asdkja dsah dflhaskl dfl",
-            price: "2772",
-            img: "https://cdn.pixabay.com/photo/2021/07/19/03/40/woman-6477110_640.jpg",
-        },
-        {
-            name: "asdkja dsah dflhaskl dfl",
-            price: "58456",
-            img: "https://cdn.pixabay.com/photo/2022/01/23/08/29/indian-woman-6960124_640.jpg",
-        },
-        {
-            name: "asdkja dsah dflhaskl dfl",
-            price: "89783",
-            img: "https://cdn.pixabay.com/photo/2017/06/15/22/05/woman-2406963_640.jpg",
-        },
-        {
-            name: "asdkja dsah dflhaskl dfl",
-            price: "4121",
-            img: "https://cdn.pixabay.com/photo/2017/05/31/04/59/beautiful-2359121_640.jpg",
-        },
-        {
-            name: "asdkja dsah dflhaskl dfl",
-            price: "9234",
-            img: "https://cdn.pixabay.com/photo/2022/05/24/06/23/indian-face-7217718_640.jpg",
-        },
-    ];
+    const [products, setProducts] = useState<Product[]>([]);
 
     const cardRef = useRef<HTMLDivElement | null>(null);
     const [carouselElem, setCarouselElem] = useState<HTMLElement>(
         document.querySelector(".carousel") as HTMLElement
     );
+
+    useEffect(() => {
+        fetch("http://localhost:5379/products/top-selling")
+            .then((res) => res.json())
+            .then((data) => setProducts(data))
+            .catch((err) => console.log(err));
+    }, []);
 
     useEffect(() => {
         setCarouselElem(document.querySelector(".carousel") as HTMLElement);
@@ -83,15 +40,22 @@ const TopSellingProducts = () => {
             <div className="mt-8 relative">
                 <div className="carousel grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-scroll scroll-smooth snap-mandatory snap-x">
                     {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
-                    {products.map((pd, i) => (
-                        <div ref={cardRef} key={i} className="snap-start">
-                            <div className="p-12 h-96 w-full bg-gray-100">
+                    {products.map((pd) => (
+                        <div
+                            ref={cardRef}
+                            key={pd._id}
+                            className="h-full w-full bg-gray-50 group"
+                        >
+                            <div className="h-96 w-full bg-gray-200 relative">
                                 <img
-                                    src={pd.img}
-                                    alt="img"
-                                    className="h-full w-full object-cover"
+                                    src={`data:${pd?.image?.type};base64, ${pd?.image?.data}`}
+                                    alt={pd.name}
+                                    className="h-full w-full object-cover roin"
                                     draggable={false}
                                 />
+                                <button className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-800 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom">
+                                    Add to cart
+                                </button>
                             </div>
                             <div className="p-4">
                                 <h3 className="text-lg font-semibold">
