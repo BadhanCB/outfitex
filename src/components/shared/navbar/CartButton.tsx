@@ -41,7 +41,7 @@ const CartButton = () => {
             >
                 <ul
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-white h-full overflow-y-scroll w-80 sm:w-96 md:w-[25rem] lg:w-[32rem] p-8 relative flex flex-col gap-6 justify-between"
+                    className="bg-white h-full overflow-y-scroll hide-scrollbar w-80 sm:w-96 md:w-[25rem] lg:w-[32rem] p-8 relative flex flex-col gap-6 justify-between"
                 >
                     <h1 className="text-4xl flex gap-2 items-center">
                         <FiShoppingCart />

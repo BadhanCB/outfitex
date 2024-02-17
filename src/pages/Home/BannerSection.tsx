@@ -1,4 +1,3 @@
-import backgroundImg from "../../assets/white-background.webp";
 import womanDress from "../../assets/dress-1.webp";
 import kidsDress from "../../assets/kids-dress.webp";
 import manDress from "../../assets/man-dress.webp";
@@ -74,10 +73,7 @@ const BannerSection = () => {
     };
 
     return (
-        <section
-            style={{ backgroundImage: `url(${backgroundImg})` }}
-            className="bg-cover bg-center bg-no-repeat relative"
-        >
+        <section className="relative bg-gray-50">
             <div className="wrapper min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-118px)] 2xl:min-h-fit w-full flex flex-nowrap items-center overflow-hidden">
                 {bannerItems.map((itm) => (
                     <BannerItem
