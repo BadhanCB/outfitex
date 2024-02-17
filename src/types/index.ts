@@ -47,13 +47,13 @@ export type UserType = {
 };
 
 export type CartItemType = {
-    _id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    image: {
-        data: string;
-        type: string;
+    _id?: string;
+    name?: string;
+    price?: number;
+    quantity?: number;
+    image?: {
+        data?: string;
+        type?: string;
     };
-    seller: object;
+    seller?: object;
 };

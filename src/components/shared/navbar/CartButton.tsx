@@ -15,7 +15,7 @@ const CartButton = () => {
         setIsOpenSideBar(false);
     };
 
-    const handleRemove = (id: string) => {
+    const handleRemove = (id?: string) => {
         setCart((prev) => prev.filter((pd) => pd._id !== id));
     };
 
@@ -109,7 +109,10 @@ const CartButton = () => {
                                     <p>
                                         {cart.reduce(
                                             (value, cp) =>
-                                                value + cp.price * cp.quantity,
+                                                cp.price && cp.quantity
+                                                    ? value +
+                                                      cp.price * cp.quantity
+                                                    : 0,
                                             0
                                         )}
                                     </p>
