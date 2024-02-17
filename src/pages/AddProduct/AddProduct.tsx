@@ -154,6 +154,8 @@ const AddProduct = () => {
                                     Select a Category
                                 </option>
                                 <option value="shirt">Shirt</option>
+                                <option value="kurta">Kurta</option>
+                                <option value="panjabi">Panjabi</option>
                                 <option value="Hat">Hat</option>
                                 <option value="Bag">Bag</option>
                             </select>

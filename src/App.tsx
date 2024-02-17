@@ -10,6 +10,7 @@ import UserPrivateRoute from "./routes/UserPrivateRoute";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
+const Collection = lazy(() => import("./pages/Collection/Collection"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const About = lazy(() => import("./pages/About/About"));
 const Wishlist = lazy(() => import("./pages/Wishlist/Wishlist"));
@@ -37,6 +38,14 @@ function App() {
                 {
                     path: "/shop",
                     element: <Shop />,
+                },
+                {
+                    path: "/collection/:collname",
+                    element: <Collection />,
+                    loader: async ({ params }) =>
+                        await fetch(
+                            `http://localhost:5379/products/collection/${params.collname}`
+                        ),
                 },
                 {
                     path: "/blogs",

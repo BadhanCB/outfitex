@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 const InventoryLayout = () => {
     return (
-        <section className="w-full min-h-[calc(100vh-68px)] grid grid-cols-12 gap-6">
+        <section className="w-full min-h-[75vh] grid grid-cols-12 gap-6">
             <section className="col-span-3">
                 <InventorySidebar />
             </section>
