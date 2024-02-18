@@ -1,9 +1,9 @@
 import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
 import ShopProductCard from "./ShopProductCard";
 import { Product, ProductResponseData } from "../../types";
-import { productsType } from "../../lib/constents";
 import ShopBanner from "./ShopBanner";
 import toast from "react-hot-toast";
+import FilterOptions from "./FilterOptions";
 
 const Shop = () => {
     const [colNum, setColNum] = useState<number>(3);
@@ -78,38 +78,14 @@ const Shop = () => {
         <>
             <ShopBanner />
             <section className="grid grid-cols-12 px-1 sm:px-2 md:px-4 lg:px-6 xl:px-8 py-4">
-                <div className="col-span-3 mr-16">
-                    <h2 className="text-2xl mb-4 font-medium text-gray-600">
-                        Category
-                    </h2>
-                    <ul className="flex flex-col gap-2">
-                        {productsType.map((pdT) => (
-                            <li
-                                key={pdT._id}
-                                className="flex gap-2 items-center"
-                            >
-                                <input
-                                    onChange={handleCategoryChange}
-                                    type="checkbox"
-                                    name={pdT.name}
-                                    id={pdT.name}
-                                    value={pdT.name}
-                                    className="cursor-pointer"
-                                />
-                                <label
-                                    htmlFor={pdT.name}
-                                    className="flex-1 flex justify-between items-center cursor-pointer"
-                                >
-                                    <span>{pdT.name}</span>
-                                    <span>({pdT.inStock})</span>
-                                </label>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="lg:col-span-3 mr-16 hidden lg:block">
+                    <FilterOptions
+                        handleCategoryChange={handleCategoryChange}
+                    />
                 </div>
-                <div className="col-span-9">
-                    <div className="w-full flex flex-wrap gap-6 justify-between items-center">
-                        <div className="flex gap-3">
+                <div className="col-span-12 lg:col-span-9">
+                    <div className="w-full flex flex-wrap gap-3 lg:gap-6 justify-center md:justify-between items-center">
+                        <div className="hidden lg:flex gap-3">
                             <button
                                 onClick={() => setColNum(2)}
                                 className={`flex gap-[2px] p-2 border rounded ${
@@ -214,6 +190,7 @@ const Shop = () => {
                                 Show only products on sale
                             </label>
                         </div> */}
+                        {/* <MobileFilter /> */}
                         <div>
                             <label htmlFor="sorting" className="text-gray-500">
                                 Sort By
@@ -237,14 +214,14 @@ const Shop = () => {
                         </div>
                     </div>
                     <div
-                        className={`grid ${
+                        className={`grid grid-cols-1 md:grid-cols-2 ${
                             colNum === 1
-                                ? "grid-cols-1"
+                                ? "lg:grid-cols-1"
                                 : colNum === 2
-                                ? "grid-cols-2"
+                                ? "lg:grid-cols-2"
                                 : colNum === 3
-                                ? "grid-cols-3"
-                                : colNum === 4 && "grid-cols-4"
+                                ? "lg:grid-cols-3"
+                                : colNum === 4 && "lg:grid-cols-4"
                         } mt-12 gap-8`}
                     >
                         {!products?.length

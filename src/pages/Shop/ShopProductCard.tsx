@@ -1,3 +1,6 @@
+import AddtoCartBtn from "../../components/ui/AddtoCartBtn";
+import AddtoWishListBtn from "../../components/ui/AddtoWishListBtn";
+import ViewProductLinkBtn from "../../components/ui/ViewProductLinkBtn";
 import { Product } from "../../types";
 
 type Props = {
@@ -20,9 +23,13 @@ const ShopProductCard = ({ product, colNum }: Props) => {
                     draggable={false}
                 />
                 {colNum !== 1 && (
-                    <button className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-800 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom">
-                        Add to cart
-                    </button>
+                    <>
+                        <AddtoCartBtn product={product} />
+                        <div className="absolute top-0 right-0 flex flex-col gap-4 p-3">
+                            <AddtoWishListBtn product={product} />
+                            <ViewProductLinkBtn product={product} />
+                        </div>
+                    </>
                 )}
             </div>
             <div className={`p-4 ${colNum === 1 && "col-span-2"}`}>

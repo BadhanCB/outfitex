@@ -16,7 +16,7 @@ const CategoryList = () => {
                     toast.error(res.statusText);
                     return;
                 }
-                const data = await res.json();
+                const data: Collection[] = await res.json();
                 setCollections(data);
             } catch (error) {
                 let errmsg = "Failed to fetch";
@@ -35,14 +35,13 @@ const CategoryList = () => {
             {!collections?.length
                 ? null
                 : collections.map((coll) => (
-                      <li>
+                      <li key={coll._id}>
                           <Accordion
                               title={coll.name}
                               name="collections"
                               id={coll.slug}
                               selectedCategory={selectedCategory}
                               setSelectedCategory={setSelectedCategory}
-                              key={coll._id}
                           >
                               <ul className="flex flex-col gap-3">
                                   {coll?.categories?.map((cat, i) => (

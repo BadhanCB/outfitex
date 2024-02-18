@@ -8,11 +8,12 @@ import { useState } from "react";
 import { RiSubtractLine } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SingleProduct = () => {
     const product = useLoaderData() as Product;
     const [quantity, setQuantity] = useState<number>(1);
-    const { cart, setCart } = useAuth();
+    const { cart, setCart, setWishList } = useAuth();
     const { _id, name, price, seller, image } = product;
 
     const handleAddtoCart = () => {
@@ -20,6 +21,19 @@ const SingleProduct = () => {
             ...prev,
             { _id, name, price, seller, image, quantity },
         ]);
+    };
+
+    const handleAddToWishlist = () => {
+        const { _id, name, price, image, seller } = product;
+        setWishList((prevWishList) => {
+            if (prevWishList.findIndex((p) => p._id === _id) > -1) {
+                toast.error("Already in Your Wishlist");
+                return prevWishList;
+            }
+
+            toast.success("Added to your Wishlist");
+            return [...prevWishList, { _id, name, price, image, seller }];
+        });
     };
 
     return (
@@ -84,6 +98,7 @@ const SingleProduct = () => {
                                 : "Add to cart"}
                         </button>
                         <button
+                            onClick={handleAddToWishlist}
                             className="p-3 border-2 rounded-md relative tooltip text-xl"
                             data-tooltip="Add to Wishlist"
                         >

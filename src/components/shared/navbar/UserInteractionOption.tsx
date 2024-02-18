@@ -9,7 +9,7 @@ const UserInteractionOption = () => {
     const { user, wishlist } = useAuth();
 
     return (
-        <div className="flex items-center gap-2 md:gap-4 font-normal">
+        <div className="flex items-center gap-4 font-normal">
             {/* <li className="flex lg:border rounded-lg xl:px-8">
                 <input
                     type="text"
@@ -35,7 +35,7 @@ const UserInteractionOption = () => {
                     </Link>
                 )}
             </li>
-            <li className="hidden md:list-item">
+            <li>
                 <Link
                     to="/wishlist"
                     className="relative tooltip"
