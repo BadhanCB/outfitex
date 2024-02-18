@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.webp";
+import logo from "../../../assets/logo.svg";
 import LeftSideBar from "./LeftSideBar";
 import OfferNotificationBar from "./OfferNotificationBar";
 import BasicNavigationOptions from "./BasicNavigationOptions";
@@ -24,7 +24,7 @@ const Navbar = () => {
                                 <img
                                     src={logo}
                                     alt="outfitex logo"
-                                    className="h-5 md:h-6 lg:h-7 w-auto"
+                                    className="h-5 md:h-6 lg:h-7 xl:h-8 w-auto"
                                 />
                                 <p className="text-lg md:text-xl lg:text-3xl">
                                     outfitex
