@@ -62,7 +62,7 @@ const AddProduct = () => {
                     return;
                 }
 
-                const res = await fetch("http://localhost:5379/products", {
+                const res = await fetch("http://localhost:5379/products/new", {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -71,8 +71,7 @@ const AddProduct = () => {
                 });
 
                 if (!res.ok) {
-                    const data: { message: string } = await res.json();
-                    toast.error(data.message);
+                    toast.error(res.statusText);
                     setIsloading(false);
                     return;
                 }

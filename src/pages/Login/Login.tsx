@@ -35,17 +35,17 @@ const Login = () => {
                 }),
             });
 
-            if (res.ok) {
-                const data = await res.json();
-                if (data.info) {
-                    toast.success(data.message);
-                    setUser(data.info);
-                    setTokenToCookie(data.token);
-                    navigate("/shop", { replace: true });
-                }
-            } else {
-                const data = await res.json();
-                toast.error(data.message);
+            if (!res.ok) {
+                toast.error(res.statusText);
+                return;
+            }
+
+            const data = await res.json();
+            if (data.info) {
+                toast.success(data.message);
+                setUser(data.info);
+                setTokenToCookie(data.token);
+                navigate("/shop", { replace: true });
             }
         } catch (error) {
             let errorMessage = "Failed to Login";

@@ -69,7 +69,7 @@ const SellerRegistration = () => {
             });
 
             if (!res.ok) {
-                toast.error("Failed To register");
+                toast.error(res.statusText);
                 return;
             }
 

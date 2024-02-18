@@ -1,15 +1,15 @@
 export const productsType = [
-    { _id: "1", name: "Hats", inStock: 1 },
-    { _id: "2", name: "Vitamin", inStock: 3 },
-    { _id: "3", name: "Healthy", inStock: 1 },
-    { _id: "4", name: "Landscaping", inStock: 2 },
-    { _id: "5", name: "Shirt", inStock: 3 },
-    { _id: "6", name: "Bags", inStock: 6 },
-    { _id: "7", name: "Accesories", inStock: 2 },
-    { _id: "8", name: "Shoes", inStock: 8 },
-    { _id: "9", name: "Blazer", inStock: 1 },
-    { _id: "10", name: "Trousers", inStock: 2 },
-    { _id: "11", name: "Clothing", inStock: 2 },
+    { _id: "1", name: "shirt", inStock: 1 },
+    { _id: "2", name: "panjabi", inStock: 3 },
+    { _id: "3", name: "kurta", inStock: 1 },
+    { _id: "4", name: "shree", inStock: 2 },
+    // { _id: "5", name: "Shirt", inStock: 3 },
+    // { _id: "6", name: "Bags", inStock: 6 },
+    // { _id: "7", name: "Accesories", inStock: 2 },
+    // { _id: "8", name: "Shoes", inStock: 8 },
+    // { _id: "9", name: "Blazer", inStock: 1 },
+    // { _id: "10", name: "Trousers", inStock: 2 },
+    // { _id: "11", name: "Clothing", inStock: 2 },
 ];
 
 export const products = [

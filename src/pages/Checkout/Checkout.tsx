@@ -41,8 +41,7 @@ const Checkout = () => {
             });
 
             if (!res.ok) {
-                const data = await res.json();
-                toast.error(data.message);
+                toast.error(res.statusText);
                 setIsloading(false);
                 return;
             }

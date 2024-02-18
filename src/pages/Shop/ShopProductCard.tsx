@@ -16,7 +16,7 @@ const ShopProductCard = ({ product, colNum }: Props) => {
                 <img
                     src={`data:${product?.image?.type};base64, ${product?.image?.data}`}
                     alt={product.name}
-                    className="h-full w-full object-cover roin"
+                    className="h-full w-full object-cover"
                     draggable={false}
                 />
                 {colNum !== 1 && (

@@ -1,49 +1,104 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
 import ShopProductCard from "./ShopProductCard";
 import { Product, ProductResponseData } from "../../types";
 import { productsType } from "../../lib/constents";
+import ShopBanner from "./ShopBanner";
+import toast from "react-hot-toast";
 
 const Shop = () => {
     const [colNum, setColNum] = useState<number>(3);
     const [products, setProducts] = useState<Product[]>([]);
+    // const [totalProducts, setTotalProducts] = useState<number>(0);
+    const [categories, setCategories] = useState<string[]>([]);
+    const [sorting, setSorting] = useState<string>("");
+
+    // useEffect(() => {
+    //     console.log(sorting);
+    // }, [sorting]);
 
     useEffect(() => {
-        fetch("http://localhost:5379/products")
-            .then((res) => res.json())
-            .then((data: ProductResponseData) => setProducts(data.products));
-    }, []);
+        const url = `http://localhost:5379/products?sort=${sorting}`;
+
+        const fetchData = async () => {
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({ categories }),
+                });
+
+                if (!res.ok) {
+                    toast.error(res.statusText);
+                    return;
+                }
+
+                const data: ProductResponseData = await res.json();
+                setProducts(data.products);
+            } catch (error) {
+                let errMsg = "Failed to Fetch";
+                if (error instanceof Error) {
+                    errMsg = error.message;
+                }
+                toast.error(errMsg);
+            }
+        };
+
+        fetchData();
+    }, [categories, sorting]);
+
+    // useEffect(() => {
+    //     fetch("http://localhost:5379/products")
+    //         .then((res) => res.json())
+    //         .then((data: ProductResponseData) => setProducts(data.products));
+    // }, []);
+
+    const handleCategoryChange: ChangeEventHandler<HTMLInputElement> = (
+        e: ChangeEvent<HTMLInputElement>
+    ) => {
+        if (e.target.checked) {
+            setCategories((prev) => [...prev, e.target.value]);
+        } else {
+            setCategories((prev) =>
+                prev.splice(prev.indexOf(e.target.value), 1)
+            );
+            // const newCategories = categories;
+            // const index = newCategories.indexOf(e.target.value);
+            // newCategories.splice(index, 1);
+            // setCategories(newCategories);
+        }
+    };
+
+    const handleSortingChange: ChangeEventHandler<HTMLSelectElement> = (
+        e: ChangeEvent<HTMLSelectElement>
+    ) => {
+        setSorting(e.target.value);
+    };
 
     return (
         <>
-            <section className="text-center">
-                <h1 className="text-4xl">Shop</h1>
-                <ul className="flex justify-center items-center mt-4">
-                    <li className="after:content-['/'] after:mx-1 text-gray-400">
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/shop">Shop</Link>
-                    </li>
-                </ul>
-            </section>
+            <ShopBanner />
             <section className="grid grid-cols-12 px-1 sm:px-2 md:px-4 lg:px-6 xl:px-8 py-4">
                 <div className="col-span-3 mr-16">
-                    <h2>Product Type</h2>
-                    <ul>
+                    <h2 className="text-2xl mb-4 font-medium text-gray-600">
+                        Category
+                    </h2>
+                    <ul className="flex flex-col gap-2">
                         {productsType.map((pdT) => (
                             <li
                                 key={pdT._id}
                                 className="flex gap-2 items-center"
                             >
                                 <input
+                                    onChange={handleCategoryChange}
                                     type="checkbox"
-                                    name="product-type"
-                                    id="product-type"
+                                    name={pdT.name}
+                                    id={pdT.name}
+                                    value={pdT.name}
+                                    className="cursor-pointer"
                                 />
                                 <label
-                                    htmlFor="product-type"
-                                    className="flex-1 flex justify-between items-center"
+                                    htmlFor={pdT.name}
+                                    className="flex-1 flex justify-between items-center cursor-pointer"
                                 >
                                     <span>{pdT.name}</span>
                                     <span>({pdT.inStock})</span>
@@ -53,7 +108,7 @@ const Shop = () => {
                     </ul>
                 </div>
                 <div className="col-span-9">
-                    <div className="w-full flex flex-wrap gap-6 items-center">
+                    <div className="w-full flex flex-wrap gap-6 justify-between items-center">
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setColNum(2)}
@@ -150,7 +205,7 @@ const Shop = () => {
                                 ></div>
                             </button>
                         </div>
-                        <p className="grow text-center">
+                        {/* <p className="grow text-center">
                             Showing 9 of 56 Products
                         </p>
                         <div>
@@ -158,11 +213,26 @@ const Shop = () => {
                             <label htmlFor="onsale">
                                 Show only products on sale
                             </label>
-                        </div>
+                        </div> */}
                         <div>
-                            <label htmlFor="sort-by">Sort By</label>
-                            <select name="sort-by" id="sort-by">
+                            <label htmlFor="sort-by" className="text-gray-500">
+                                Sort By
+                            </label>
+                            <select
+                                onChange={handleSortingChange}
+                                name="sorting"
+                                id="sorting"
+                                className="px-4 py-2 border ml-2 rounded bg-gray-50 focus:outline-none"
+                            >
                                 <option value="">Default Sorting</option>
+                                <option value="popular">Popularity</option>
+                                <option value="latest">Latest</option>
+                                <option value="lowToHigh">
+                                    Price: Low to High
+                                </option>
+                                <option value="highToLow">
+                                    Price: High to Low
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -177,13 +247,15 @@ const Shop = () => {
                                 : colNum === 4 && "grid-cols-4"
                         } mt-12 gap-8`}
                     >
-                        {products.map((pd) => (
-                            <ShopProductCard
-                                key={pd._id}
-                                product={pd}
-                                colNum={colNum}
-                            />
-                        ))}
+                        {!products?.length
+                            ? null
+                            : products.map((pd) => (
+                                  <ShopProductCard
+                                      key={pd._id}
+                                      product={pd}
+                                      colNum={colNum}
+                                  />
+                              ))}
                     </div>
                 </div>
             </section>
