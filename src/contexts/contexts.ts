@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from "react";
-import { CartItemType, UserType } from "../types";
+import { CartItemType, UserType, WishListType } from "../types";
 
 interface IAUTH_Context {
     user: UserType;
@@ -9,6 +9,8 @@ interface IAUTH_Context {
     logout: () => void;
     cart: CartItemType[];
     setCart: Dispatch<SetStateAction<CartItemType[]>>;
+    wishlist: WishListType[];
+    setWishList: Dispatch<SetStateAction<WishListType[]>>;
 }
 
 export const AUTH_CONTEXT = createContext<IAUTH_Context>({
@@ -19,4 +21,6 @@ export const AUTH_CONTEXT = createContext<IAUTH_Context>({
     logout: () => {},
     cart: [],
     setCart: () => {},
+    wishlist: [],
+    setWishList: () => {},
 });

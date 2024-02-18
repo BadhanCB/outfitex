@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Product } from "../../types";
+import AddtoCartBtn from "../../components/ui/AddtoCartBtn";
+import AddtoWishListBtn from "../../components/ui/AddtoWishListBtn";
+import { Link } from "react-router-dom";
+import { TbEye } from "react-icons/tb";
 
 const TopSellingProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -42,28 +46,43 @@ const TopSellingProducts = () => {
                     {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
                     {!products.length
                         ? null
-                        : products.map((pd) => (
+                        : products.map((product) => (
                               <div
                                   ref={cardRef}
-                                  key={pd._id}
-                                  className="h-full w-full bg-gray-50 group"
+                                  key={product._id}
+                                  className="h-full w-full bg-gray-50 group overflow-hidden"
                               >
                                   <div className="h-96 w-full bg-gray-200 relative">
                                       <img
-                                          src={`data:${pd?.image?.type};base64, ${pd?.image?.data}`}
-                                          alt={pd.name}
-                                          className="h-full w-full object-cover roin"
+                                          src={`data:${product?.image?.type};base64, ${product?.image?.data}`}
+                                          alt={product.name}
+                                          className="h-full w-full object-cover"
                                           draggable={false}
                                       />
-                                      <button className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-800 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom">
-                                          Add to cart
-                                      </button>
+                                      <AddtoCartBtn product={product} />
+                                      <div className="absolute top-0 right-0 flex flex-col gap-4 p-3">
+                                          <AddtoWishListBtn product={product} />
+                                          <Link
+                                              to={`/product/${product.slug}`}
+                                              className="tooltip-left relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md translate-x-6 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition duration-300 delay-150"
+                                              data-tooltip="View"
+                                          >
+                                              <TbEye className="text-2xl" />
+                                          </Link>
+                                      </div>
                                   </div>
                                   <div className="p-4">
-                                      <h3 className="text-lg font-semibold">
-                                          {pd.name}
-                                      </h3>
-                                      <p>$ {pd.price}</p>
+                                      <Link
+                                          to={`/product/${product.slug}`}
+                                          className="text-lg font-semibold"
+                                      >
+                                          {product.name &&
+                                          product.name?.length > 28
+                                              ? product.name?.slice(0, 28) +
+                                                "..."
+                                              : product.name}
+                                      </Link>
+                                      <p>$ {product.price}</p>
                                   </div>
                               </div>
                           ))}

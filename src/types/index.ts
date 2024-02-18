@@ -46,16 +46,19 @@ export type UserType = {
     nidNumber?: string;
 };
 
-export type CartItemType = {
+export type WishListType = {
     _id?: string;
     name?: string;
     price?: number;
-    quantity?: number;
     image?: {
         data?: string;
         type?: string;
     };
     seller?: object;
+};
+
+export type CartItemType = WishListType & {
+    quantity?: number;
 };
 
 export type Order = {

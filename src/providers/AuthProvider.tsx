@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AUTH_CONTEXT } from "../contexts/contexts";
-import { CartItemType, UserType } from "../types";
+import { CartItemType, UserType, WishListType } from "../types";
 import {
     clearTokenCookie,
     getTokenFromCookie,
@@ -16,6 +16,7 @@ const AuthProvider = ({ children }: Props) => {
     const [user, setUser] = useState<UserType>({});
     const [isLoading, setIsLoading] = useState(false);
     const [cart, setCart] = useState<CartItemType[]>([]);
+    const [wishlist, setWishList] = useState<WishListType[]>([]);
 
     useEffect(() => {
         if (getTokenFromCookie()) {
@@ -53,6 +54,8 @@ const AuthProvider = ({ children }: Props) => {
                 logout,
                 cart,
                 setCart,
+                wishlist,
+                setWishList,
             }}
         >
             {children}

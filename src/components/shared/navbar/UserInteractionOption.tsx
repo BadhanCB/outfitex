@@ -6,7 +6,7 @@ import UserProfileBasicOption from "./UserProfileBasicOption";
 import CartButton from "./CartButton";
 
 const UserInteractionOption = () => {
-    const { user } = useAuth();
+    const { user, wishlist } = useAuth();
 
     return (
         <div className="flex items-center gap-2 md:gap-4 font-normal">
@@ -43,7 +43,7 @@ const UserInteractionOption = () => {
                 >
                     <FiHeart className="text-2xl hover:text-amber-400 transition-colors" />
                     <Badge className="bg-amber-400 absolute -top-2 -right-3">
-                        0
+                        {wishlist.length}
                     </Badge>
                 </Link>
             </li>

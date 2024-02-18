@@ -52,6 +52,42 @@
         transform-origin: top center;
     }
 
+    .tooltip-left {
+        --scale: 0;
+    }
+    .tooltip-left::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        padding: 5px 10px !important;
+        width: max-content;
+        border-radius: 0.3rem;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        background-color: rgb(30, 50, 50);
+        color: white;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+        top: 50%;
+        right: calc(100% + 0.4rem);
+        transform: translateY(-50%) scale(var(--scale));
+        transition: transform 200ms;
+        transform-origin: right center;
+    }
+    .tooltip-left:hover::before,
+    .tooltip-left:hover::after {
+        --scale: 1;
+    }
+    .tooltip-left::after {
+        content: "";
+        border: 10px solid transparent;
+        border-left-color: rgb(30, 50, 50);
+        position: absolute;
+        top: 50%;
+        left: -0.1rem;
+        transform: translateX(-50%) translateY(-50%) scale(var(--scale));
+        transition: transform 200ms;
+        transform-origin: left center;
+    }
+
     /* Animated Bottom Border on Hover */
     .animated-border-b {
         position: relative;
