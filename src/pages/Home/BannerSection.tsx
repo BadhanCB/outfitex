@@ -1,47 +1,24 @@
-import womanDress from "../../assets/dress-1.webp";
-import kidsDress from "../../assets/kids-dress.webp";
-import manDress from "../../assets/man-dress.webp";
-import accesories from "../../assets/woman-accessories.webp";
 import BannerItem from "./BannerItem";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Product } from "../../types";
 
 const BannerSection = () => {
-    const bannerItems = useMemo(
-        () => [
-            {
-                _id: 1,
-                imgUrl: womanDress,
-                title: "NEW ATTRACTIVE DRESS",
-                productName: "Stylish women's high quality Summer dress",
-            },
-            {
-                _id: 2,
-                imgUrl: manDress,
-                title: "Best Mens Dress",
-                productName: "Premium Check Formal Suit by RICHMAN",
-            },
-            {
-                _id: 3,
-                imgUrl: kidsDress,
-                title: "Kids Wear",
-                productName: "Girls salwar kameez",
-            },
-            {
-                _id: 4,
-                imgUrl: accesories,
-                title: "Fashion Accessories",
-                productName: "Stylish women's Genuine Leather Bag",
-            },
-        ],
-        []
-    );
+    const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        fetch("http://localhost:5379/products/featured")
+            .then((res) => res.json())
+            .then((data) => setFeaturedProducts(data));
+
+        return () => {};
+    }, []);
 
     useEffect(() => {
         const slideTimeInterval = setInterval(() => {
             setActiveIndex((prev) => {
-                if (prev === bannerItems.length - 1) {
+                if (prev === featuredProducts.length - 1) {
                     return 0;
                 } else {
                     return prev + 1;
@@ -50,11 +27,11 @@ const BannerSection = () => {
         }, 7000);
 
         return () => clearInterval(slideTimeInterval);
-    }, [bannerItems]);
+    }, [featuredProducts]);
 
     const handleNext = () => {
         setActiveIndex((prev) => {
-            if (prev === bannerItems.length - 1) {
+            if (prev === featuredProducts.length - 1) {
                 return 0;
             } else {
                 return prev + 1;
@@ -65,7 +42,7 @@ const BannerSection = () => {
     const handlePrevious = () => {
         setActiveIndex((prev) => {
             if (prev === 0) {
-                return bannerItems.length - 1;
+                return featuredProducts.length - 1;
             } else {
                 return prev - 1;
             }
@@ -75,12 +52,13 @@ const BannerSection = () => {
     return (
         <section className="relative bg-gray-50">
             <div className="wrapper min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-118px)] 2xl:min-h-fit w-full flex flex-nowrap items-center overflow-hidden">
-                {bannerItems.map((itm) => (
+                {featuredProducts.map((itm) => (
                     <BannerItem
                         key={itm._id}
-                        imgUrl={itm.imgUrl}
-                        productName={itm.productName}
-                        title={itm.title}
+                        img={itm.image}
+                        productName={itm.name}
+                        title={itm.category}
+                        slug={itm.slug}
                         activeIndex={activeIndex}
                     />
                 ))}
@@ -100,7 +78,7 @@ const BannerSection = () => {
                 </button>
             </div>
             <div className="flex justify-center items-center gap-4 absolute left-2/4 -translate-x-2/4 bottom-4">
-                {bannerItems.map((i, index) => (
+                {featuredProducts.map((i, index) => (
                     <div
                         key={i._id}
                         className={`h-3 ${

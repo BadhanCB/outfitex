@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 import OutlineButton from "../../components/ui/OutlineButton";
 
 type Props = {
-    imgUrl: string;
-    title: string;
-    productName: string;
+    title?: string;
+    productName?: string;
+    img?: {
+        data?: string;
+        type?: string;
+    };
+    slug?: string;
     activeIndex: number;
 };
 
-const BannerItem = ({ imgUrl, productName, title, activeIndex }: Props) => {
+const BannerItem = ({ img, productName, title, slug, activeIndex }: Props) => {
     return (
         <div
             className="h-full w-full flex-shrink-0 flex-grow-0 grid grid-cols-1 md:grid-cols-2 justify-items-center items-center py-5 px-4 sm:px-6 md:px-8 transition-transform duration-500"
@@ -20,13 +24,13 @@ const BannerItem = ({ imgUrl, productName, title, activeIndex }: Props) => {
                     {productName}
                 </h1>
 
-                <Link to="">
+                <Link to={`/product/${slug}`}>
                     <OutlineButton>Explore Now</OutlineButton>
                 </Link>
             </div>
             <div className="order-1 md:order-2">
                 <img
-                    src={imgUrl}
+                    src={`data:${img?.type};base64, ${img?.data}`}
                     alt={productName}
                     className="h-60 md:h-[450px] lg:h-[500px] xl:h-[575px] w-auto"
                 />
