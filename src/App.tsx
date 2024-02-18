@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import SellerPrivateRoute from "./routes/SellerPrivateRoute";
 import UserPrivateRoute from "./routes/UserPrivateRoute";
+import Category from "./pages/Category/Category";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
@@ -58,6 +59,14 @@ function App() {
                     loader: async ({ params }) =>
                         await fetch(
                             `http://localhost:5379/products/collection/${params.collname}`
+                        ),
+                },
+                {
+                    path: "/category/:catname",
+                    element: <Category />,
+                    loader: async ({ params }) =>
+                        await fetch(
+                            `http://localhost:5379/products/category/${params.catname}`
                         ),
                 },
                 {

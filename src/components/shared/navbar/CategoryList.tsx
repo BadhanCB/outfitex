@@ -17,22 +17,34 @@ const CategoryList = () => {
                 >
                     <ul className="flex flex-col gap-3">
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/three-piece"
+                                className="animated-border-b"
+                            >
                                 Three Piece
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/shirt"
+                                className="animated-border-b"
+                            >
                                 Shirt
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/pant"
+                                className="animated-border-b"
+                            >
                                 Pant
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/shoes"
+                                className="animated-border-b"
+                            >
                                 Shoes
                             </Link>
                         </li>
@@ -49,22 +61,34 @@ const CategoryList = () => {
                 >
                     <ul className="flex flex-col gap-3">
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/shirt"
+                                className="animated-border-b"
+                            >
                                 Shirt
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/pant"
+                                className="animated-border-b"
+                            >
                                 Pant
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/taxido"
+                                className="animated-border-b"
+                            >
                                 Taxido
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/sun-glass"
+                                className="animated-border-b"
+                            >
                                 Sun Glass
                             </Link>
                         </li>
@@ -81,17 +105,26 @@ const CategoryList = () => {
                 >
                     <ul className="flex flex-col gap-3">
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/toy"
+                                className="animated-border-b"
+                            >
                                 Toy
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/dress"
+                                className="animated-border-b"
+                            >
                                 Dress
                             </Link>
                         </li>
                         <li>
-                            <Link to="" className="animated-border-b">
+                            <Link
+                                to="/category/sun-glass"
+                                className="animated-border-b"
+                            >
                                 Sun Glass
                             </Link>
                         </li>

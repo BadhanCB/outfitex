@@ -75,7 +75,9 @@ const LatestProducts = () => {
                         </li>
                     </ul>
                     <div className="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        {!collection
+                        {!products.length
+                            ? null
+                            : !collection
                             ? products.map((pd) => (
                                   <ProductCard key={pd._id} product={pd} />
                               ))

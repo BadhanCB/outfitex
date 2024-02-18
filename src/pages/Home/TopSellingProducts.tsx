@@ -38,33 +38,35 @@ const TopSellingProducts = () => {
             </h2>
             <p className="text-lg text-center">Product in focus</p>
             <div className="mt-8 relative">
-                <div className="carousel grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-scroll scroll-smooth snap-mandatory snap-x">
+                <div className="carousel grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto scroll-smooth snap-mandatory snap-x">
                     {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
-                    {products.map((pd) => (
-                        <div
-                            ref={cardRef}
-                            key={pd._id}
-                            className="h-full w-full bg-gray-50 group"
-                        >
-                            <div className="h-96 w-full bg-gray-200 relative">
-                                <img
-                                    src={`data:${pd?.image?.type};base64, ${pd?.image?.data}`}
-                                    alt={pd.name}
-                                    className="h-full w-full object-cover roin"
-                                    draggable={false}
-                                />
-                                <button className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-800 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom">
-                                    Add to cart
-                                </button>
-                            </div>
-                            <div className="p-4">
-                                <h3 className="text-lg font-semibold">
-                                    {pd.name}
-                                </h3>
-                                <p>$ {pd.price}</p>
-                            </div>
-                        </div>
-                    ))}
+                    {!products.length
+                        ? null
+                        : products.map((pd) => (
+                              <div
+                                  ref={cardRef}
+                                  key={pd._id}
+                                  className="h-full w-full bg-gray-50 group"
+                              >
+                                  <div className="h-96 w-full bg-gray-200 relative">
+                                      <img
+                                          src={`data:${pd?.image?.type};base64, ${pd?.image?.data}`}
+                                          alt={pd.name}
+                                          className="h-full w-full object-cover roin"
+                                          draggable={false}
+                                      />
+                                      <button className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-800 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom">
+                                          Add to cart
+                                      </button>
+                                  </div>
+                                  <div className="p-4">
+                                      <h3 className="text-lg font-semibold">
+                                          {pd.name}
+                                      </h3>
+                                      <p>$ {pd.price}</p>
+                                  </div>
+                              </div>
+                          ))}
                 </div>
                 <div className="w-[calc(100%_+_2rem)] md:w-[calc(100%_+_4rem)] lg:w-[calc(100%_+_6rem)] absolute flex justify-between text-2xl md:text-3xl lg:text-5xl top-2/4 -translate-y-2/4 -left-4 md:-left-8 lg:-left-12">
                     <button
