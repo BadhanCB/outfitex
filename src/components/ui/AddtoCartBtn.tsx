@@ -30,7 +30,7 @@ const AddtoCartBtn = ({ product }: Props) => {
     return (
         <button
             onClick={handleClick}
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-900 text-white font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom"
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 p-2 w-full bg-gray-900 hover:bg-gray-700 text-gray-50 font-medium scale-y-100 lg:scale-y-0 group-hover:scale-y-100 transition duration-300 origin-bottom"
         >
             Add to cart
         </button>

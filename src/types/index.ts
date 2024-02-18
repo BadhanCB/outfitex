@@ -79,3 +79,15 @@ export type Order = {
     };
     totalPayableAmount?: number;
 };
+
+export type Category = {
+    name: string;
+    slug: string;
+};
+
+export type Collection = {
+    _id: string;
+    name: string;
+    slug: string;
+    categories: Category[];
+};

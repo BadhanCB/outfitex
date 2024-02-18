@@ -215,7 +215,7 @@ const Shop = () => {
                             </label>
                         </div> */}
                         <div>
-                            <label htmlFor="sort-by" className="text-gray-500">
+                            <label htmlFor="sorting" className="text-gray-500">
                                 Sort By
                             </label>
                             <select

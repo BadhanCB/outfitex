@@ -4,7 +4,7 @@ import { Product } from "../../types";
 import AddtoCartBtn from "../../components/ui/AddtoCartBtn";
 import AddtoWishListBtn from "../../components/ui/AddtoWishListBtn";
 import { Link } from "react-router-dom";
-import { TbEye } from "react-icons/tb";
+import ViewProductLinkBtn from "../../components/ui/ViewProductLinkBtn";
 
 const TopSellingProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -62,13 +62,9 @@ const TopSellingProducts = () => {
                                       <AddtoCartBtn product={product} />
                                       <div className="absolute top-0 right-0 flex flex-col gap-4 p-3">
                                           <AddtoWishListBtn product={product} />
-                                          <Link
-                                              to={`/product/${product.slug}`}
-                                              className="tooltip-left relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md translate-x-6 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition duration-300 delay-150"
-                                              data-tooltip="View"
-                                          >
-                                              <TbEye className="text-2xl" />
-                                          </Link>
+                                          <ViewProductLinkBtn
+                                              product={product}
+                                          />
                                       </div>
                                   </div>
                                   <div className="p-4">

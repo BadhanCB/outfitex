@@ -77,7 +77,7 @@ const SingleProduct = () => {
                                 cart.find((cp) => cp._id === _id) ? true : false
                             }
                             onClick={handleAddtoCart}
-                            className="px-12 py-2 bg-gray-900 text-lg text-gray-50 font-semibold capitalize rounded-md animate-shake disabled:bg-gray-600 disabled:cursor-not-allowed"
+                            className="px-12 py-2 bg-gray-900 hover:bg-slate-700 text-lg text-gray-50 font-semibold capitalize rounded-md animate-shake disabled:bg-gray-600 disabled:cursor-not-allowed transition hover:animate-none"
                         >
                             {cart.find((cp) => cp._id === _id)
                                 ? "Product added to the cart"

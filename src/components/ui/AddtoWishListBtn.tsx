@@ -26,7 +26,7 @@ const AddtoWishListBtn = ({ product }: Props) => {
     return (
         <button
             onClick={handleClick}
-            className="tooltip-left relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md translate-x-6 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition duration-300"
+            className="tooltip-left relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md lg:translate-x-6 lg:group-hover:translate-x-0 lg:opacity-0 lg:group-hover:opacity-100 transition duration-300"
             data-tooltip="Add to WishList"
         >
             <FaRegHeart className="text-2xl animate-heartbeat" />

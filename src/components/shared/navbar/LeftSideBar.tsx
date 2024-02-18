@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from "react";
 import { FiAlignLeft, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import CategoryList from "./CategoryList";
+import MobileNavigationOptions from "./MobileNavigationOptions";
 
 const LeftSideBar = () => {
     const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -35,32 +35,7 @@ const LeftSideBar = () => {
                     {/* Category List(initially hidden and visible in medium device) */}
                     <CategoryList />
                     {/* Navigation Link List(initially visible and hidden in medium device) */}
-                    <div className="h-full w-full flex md:hidden flex-col gap-4">
-                        <li>
-                            <Link
-                                className="hover:text-amber-400 transition-colors"
-                                to="/shop"
-                            >
-                                Shop
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                className="hover:text-amber-400 transition-colors"
-                                to="/blogs"
-                            >
-                                Blogs
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                className="hover:text-amber-400 transition-colors"
-                                to="/about"
-                            >
-                                About
-                            </Link>
-                        </li>
-                    </div>
+                    <MobileNavigationOptions />
 
                     <button
                         onClick={() => setIsOpenSideBar(false)}
