@@ -12,7 +12,9 @@ const MobileFilter = ({ handleCategoryChange }: Props) => {
     useEffect(() => {
         const fetchCollections = async () => {
             try {
-                const res = await fetch("http://localhost:5379/collections");
+                const res = await fetch(
+                    "https://outfitex.onrender.com/collections"
+                );
 
                 if (!res.ok) {
                     toast.error(res.statusText);

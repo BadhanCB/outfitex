@@ -18,7 +18,7 @@ const Shop = () => {
     // }, [sorting]);
 
     useEffect(() => {
-        const url = `http://localhost:5379/products?sort=${sorting}`;
+        const url = `https://outfitex.onrender.com/products?sort=${sorting}`;
 
         const fetchData = async () => {
             try {
@@ -48,7 +48,7 @@ const Shop = () => {
     }, [categories, sorting]);
 
     // useEffect(() => {
-    //     fetch("http://localhost:5379/products")
+    //     fetch("https://outfitex.onrender.com/products")
     //         .then((res) => res.json())
     //         .then((data: ProductResponseData) => setProducts(data.products));
     // }, []);

@@ -12,7 +12,7 @@ const BannerSection = () => {
         const fetchFeaturedProduct = async () => {
             try {
                 const res = await fetch(
-                    "http://localhost:5379/products/featured"
+                    "https://outfitex.onrender.com/products/featured"
                 );
                 if (!res.ok) {
                     toast.error(res.statusText);

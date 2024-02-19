@@ -15,7 +15,7 @@ const TopSellingProducts = () => {
     );
 
     useEffect(() => {
-        fetch("http://localhost:5379/products/top-selling")
+        fetch("https://outfitex.onrender.com/products/top-selling")
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.log(err));

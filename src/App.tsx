@@ -50,7 +50,7 @@ function App() {
                     element: <SingleProduct />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `http://localhost:5379/product/${params.slug}`
+                            `https://outfitex.onrender.com/product/${params.slug}`
                         ),
                 },
                 {
@@ -58,7 +58,7 @@ function App() {
                     element: <Collection />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `http://localhost:5379/products/collection/${params.collname}`
+                            `https://outfitex.onrender.com/products/collection/${params.collname}`
                         ),
                 },
                 {
@@ -66,7 +66,7 @@ function App() {
                     element: <Category />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `http://localhost:5379/products/category/${params.catname}`
+                            `https://outfitex.onrender.com/products/category/${params.catname}`
                         ),
                 },
                 {

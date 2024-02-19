@@ -7,7 +7,7 @@ const LatestProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:5379/products/latest")
+        fetch("https://outfitex.onrender.com/products/latest")
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);

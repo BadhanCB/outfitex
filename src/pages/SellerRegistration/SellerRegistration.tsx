@@ -62,7 +62,7 @@ const SellerRegistration = () => {
                 password,
             };
 
-            const res = await fetch("http://localhost:5379/seller", {
+            const res = await fetch("https://outfitex.onrender.com/seller", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(newUser),

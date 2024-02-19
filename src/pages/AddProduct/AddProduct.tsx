@@ -25,7 +25,9 @@ const AddProduct = () => {
     useEffect(() => {
         const fetchCollections = async () => {
             try {
-                const res = await fetch("http://localhost:5379/collections");
+                const res = await fetch(
+                    "https://outfitex.onrender.com/collections"
+                );
 
                 if (!res.ok) {
                     toast.error(res.statusText);
@@ -90,13 +92,16 @@ const AddProduct = () => {
                     return;
                 }
 
-                const res = await fetch("http://localhost:5379/products/new", {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: formData,
-                });
+                const res = await fetch(
+                    "https://outfitex.onrender.com/products/new",
+                    {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: formData,
+                    }
+                );
 
                 if (!res.ok) {
                     toast.error(res.statusText);

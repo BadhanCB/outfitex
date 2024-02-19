@@ -21,7 +21,7 @@ const AuthProvider = ({ children }: Props) => {
     useEffect(() => {
         if (getTokenFromCookie()) {
             setIsLoading(true);
-            fetch("http://localhost:5379/authenticate-with-jwt", {
+            fetch("https://outfitex.onrender.com/authenticate-with-jwt", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromCookie()}`,
                 },

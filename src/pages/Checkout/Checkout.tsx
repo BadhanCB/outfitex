@@ -31,7 +31,7 @@ const Checkout = () => {
                 return;
             }
 
-            const res = await fetch("http://localhost:5379/order", {
+            const res = await fetch("https://outfitex.onrender.com/order", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

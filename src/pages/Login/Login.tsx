@@ -24,7 +24,7 @@ const Login = () => {
                 return;
             }
 
-            const res = await fetch("http://localhost:5379/login", {
+            const res = await fetch("https://outfitex.onrender.com/login", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
