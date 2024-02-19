@@ -7,6 +7,7 @@ import {
     setTokenToCookie,
 } from "../lib/utils";
 import toast from "react-hot-toast";
+import { initializeFirebase } from "../firebase/firebase.config";
 
 type Props = {
     children: React.ReactNode;
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }: Props) => {
     const [wishlist, setWishList] = useState<WishListType[]>([]);
 
     useEffect(() => {
+        initializeFirebase();
         if (getTokenFromCookie()) {
             setIsLoading(true);
             fetch("https://outfitex.onrender.com/authenticate-with-jwt", {
