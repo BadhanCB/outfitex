@@ -4,6 +4,7 @@ import { Product, ProductResponseData } from "../../types";
 import ShopBanner from "./ShopBanner";
 import toast from "react-hot-toast";
 import FilterOptions from "./FilterOptions";
+import MobileFilter from "./MobileFilter";
 
 const Shop = () => {
     const [colNum, setColNum] = useState<number>(3);
@@ -84,7 +85,7 @@ const Shop = () => {
                     />
                 </div>
                 <div className="col-span-12 lg:col-span-9">
-                    <div className="w-full flex flex-wrap gap-3 lg:gap-6 justify-center md:justify-between items-center">
+                    <div className="w-full flex flex-wrap gap-3 lg:gap-6 justify-center md:justify-between items-center relative">
                         <div className="hidden lg:flex gap-3">
                             <button
                                 onClick={() => setColNum(2)}
@@ -190,7 +191,9 @@ const Shop = () => {
                                 Show only products on sale
                             </label>
                         </div> */}
-                        {/* <MobileFilter /> */}
+                        <MobileFilter
+                            handleCategoryChange={handleCategoryChange}
+                        />
                         <div>
                             <label htmlFor="sorting" className="text-gray-500">
                                 Sort By
