@@ -122,10 +122,10 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="p-12">
+        <div className="p-4 md:p-8 lg:p-12">
             <h1 className="text-3xl font-medium">Add New Product</h1>
             <form onSubmit={handleSubmit} className="mt-12">
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-col md:flex-row">
                     <div>
                         <label htmlFor="img" className="cursor-pointer">
                             <div className="bg-slate-50 rounded-md border w-52 h-52 flex flex-col justify-center items-center text-gray-500 overflow-hidden">
@@ -166,7 +166,7 @@ const AddProduct = () => {
                             className="bg-gray-50 w-full p-2 rounded-md"
                             placeholder="Price"
                         />
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <select
                                 name="collection"
                                 id="collection"
