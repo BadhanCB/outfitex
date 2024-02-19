@@ -12,9 +12,10 @@ const CategoryList = () => {
         const fetchCollections = async () => {
             try {
                 const res = await fetch(
-                    "${import.meta.env.VITE_API_BASE_URL}/collections"
+                    `${import.meta.env.VITE_API_BASE_URL}/collections`
                 );
                 if (!res.ok) {
+                    console.log(res);
                     toast.error(res.statusText);
                     return;
                 }

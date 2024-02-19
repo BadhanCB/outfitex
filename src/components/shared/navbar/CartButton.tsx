@@ -99,7 +99,8 @@ const CartButton = () => {
                                         </div>
                                         <button
                                             onClick={() => handleRemove(cp._id)}
-                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-orange-500"
+                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-orange-500 tooltip-left"
+                                            data-tooltip="Remove from Cart"
                                         >
                                             <ImBin className="text-sm md:text-base lg:text-lg" />
                                         </button>
