@@ -1,9 +1,10 @@
-import { FormEvent, FormEventHandler, useState } from "react";
+import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FiLoader, FiUpload } from "react-icons/fi";
 import { getTokenFromCookie } from "../../lib/utils";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Collection } from "../../types";
 
 type formInputType = {
     name: { value: string };
@@ -16,8 +17,35 @@ type formInputType = {
 const AddProduct = () => {
     const [isLoading, setIsloading] = useState(false);
     const [imageFile, setImageFile] = useState<FileList | null>(null);
+    const [collections, setCollections] = useState<Collection[]>([]);
+    const [collection, setCollection] = useState("");
     const { setUser } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchCollections = async () => {
+            try {
+                const res = await fetch("http://localhost:5379/collections");
+
+                if (!res.ok) {
+                    toast.error(res.statusText);
+                    return;
+                }
+
+                const data: Collection[] = await res.json();
+
+                setCollections(data);
+            } catch (error) {
+                let errmsg = "Failed to fetch";
+                if (error instanceof Error) {
+                    errmsg = error.message;
+                }
+                toast.error(errmsg);
+            }
+        };
+
+        fetchCollections();
+    }, []);
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (
         e: FormEvent<HTMLFormElement>
@@ -140,9 +168,26 @@ const AddProduct = () => {
                         />
                         <div className="grid grid-cols-2 gap-4">
                             <select
+                                name="collection"
+                                id="collection"
+                                defaultValue=""
+                                onChange={(e) => setCollection(e.target.value)}
+                                className="bg-gray-50 w-full p-2 rounded-md"
+                            >
+                                <option value="" disabled>
+                                    Select a Collection Type
+                                </option>
+                                {collections.map((coll) => (
+                                    <option value={coll.slug}>
+                                        {coll.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <select
                                 name="category"
                                 id="category"
                                 defaultValue=""
+                                disabled={collection.length < 1}
                                 className="bg-gray-50 w-full p-2 rounded-md focus:outline-none"
                             >
                                 <option
@@ -152,25 +197,16 @@ const AddProduct = () => {
                                 >
                                     Select a Category
                                 </option>
-                                <option value="shirt">Shirt</option>
-                                <option value="kurta">Kurta</option>
-                                <option value="panjabi">Panjabi</option>
-                                <option value="Hat">Hat</option>
-                                <option value="Bag">Bag</option>
-                            </select>
-                            <select
-                                name="collection"
-                                id="collection"
-                                defaultValue=""
-                                className="bg-gray-50 w-full p-2 rounded-md"
-                            >
-                                <option value="" disabled>
-                                    Select a Collection Type
-                                </option>
-                                <option value="men">Men</option>
-                                <option value="women">Women</option>
-                                <option value="kids">Kids</option>
-                                <option value="accesories">Accesories</option>
+
+                                {collections.map((coll) =>
+                                    coll.slug === collection
+                                        ? coll.categories.map((cat) => (
+                                              <option value={cat.slug}>
+                                                  {cat.name}
+                                              </option>
+                                          ))
+                                        : null
+                                )}
                             </select>
                         </div>
                     </div>
