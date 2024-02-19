@@ -85,7 +85,7 @@ const Shop = () => {
                     />
                 </div>
                 <div className="col-span-12 lg:col-span-9">
-                    <div className="w-full flex flex-wrap gap-3 lg:gap-6 justify-center md:justify-between items-center relative">
+                    <div className="w-full flex flex-wrap gap-3 lg:gap-6 justify-between items-center relative">
                         <div className="hidden lg:flex gap-3">
                             <button
                                 onClick={() => setColNum(2)}
