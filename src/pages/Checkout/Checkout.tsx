@@ -31,14 +31,17 @@ const Checkout = () => {
                 return;
             }
 
-            const res = await fetch("https://outfitex.onrender.com/order", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                    authorization: `Bearer ${getTokenFromCookie()}`,
-                },
-                body: JSON.stringify(newOrder),
-            });
+            const res = await fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/order`,
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `Bearer ${getTokenFromCookie()}`,
+                    },
+                    body: JSON.stringify(newOrder),
+                }
+            );
 
             if (!res.ok) {
                 toast.error(res.statusText);

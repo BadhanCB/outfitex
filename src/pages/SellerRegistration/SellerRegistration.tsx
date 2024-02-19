@@ -62,11 +62,14 @@ const SellerRegistration = () => {
                 password,
             };
 
-            const res = await fetch("https://outfitex.onrender.com/seller", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify(newUser),
-            });
+            const res = await fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/seller`,
+                {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(newUser),
+                }
+            );
 
             if (!res.ok) {
                 toast.error(res.statusText);

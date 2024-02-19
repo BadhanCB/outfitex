@@ -54,11 +54,14 @@ const Signup = () => {
                 password,
             };
 
-            const res = await fetch("https://outfitex.onrender.com/user", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify(newUser),
-            });
+            const res = await fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/user`,
+                {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(newUser),
+                }
+            );
             const data = await res.json();
 
             toast.success(data.message);

@@ -50,7 +50,9 @@ function App() {
                     element: <SingleProduct />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `https://outfitex.onrender.com/product/${params.slug}`
+                            `${import.meta.env.VITE_API_BASE_URL}/product/${
+                                params.slug
+                            }`
                         ),
                 },
                 {
@@ -58,7 +60,9 @@ function App() {
                     element: <Collection />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `https://outfitex.onrender.com/products/collection/${params.collname}`
+                            `${
+                                import.meta.env.VITE_API_BASE_URL
+                            }/products/collection/${params.collname}`
                         ),
                 },
                 {
@@ -66,7 +70,9 @@ function App() {
                     element: <Category />,
                     loader: async ({ params }) =>
                         await fetch(
-                            `https://outfitex.onrender.com/products/category/${params.catname}`
+                            `${
+                                import.meta.env.VITE_API_BASE_URL
+                            }/products/category/${params.catname}`
                         ),
                 },
                 {

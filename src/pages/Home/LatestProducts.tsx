@@ -7,7 +7,7 @@ const LatestProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-        fetch("https://outfitex.onrender.com/products/latest")
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/latest`)
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);

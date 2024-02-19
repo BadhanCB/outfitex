@@ -15,7 +15,7 @@ const TopSellingProducts = () => {
     );
 
     useEffect(() => {
-        fetch("https://outfitex.onrender.com/products/top-selling")
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/products/top-selling`)
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.log(err));

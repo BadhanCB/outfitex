@@ -12,7 +12,7 @@ const BannerSection = () => {
         const fetchFeaturedProduct = async () => {
             try {
                 const res = await fetch(
-                    "https://outfitex.onrender.com/products/featured"
+                    `${import.meta.env.VITE_API_BASE_URL}/products/featured`
                 );
                 if (!res.ok) {
                     toast.error(res.statusText);

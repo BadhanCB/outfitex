@@ -26,7 +26,7 @@ const AddProduct = () => {
         const fetchCollections = async () => {
             try {
                 const res = await fetch(
-                    "https://outfitex.onrender.com/collections"
+                    `${import.meta.env.VITE_API_BASE_URL}/collections`
                 );
 
                 if (!res.ok) {
@@ -93,7 +93,7 @@ const AddProduct = () => {
                 }
 
                 const res = await fetch(
-                    "https://outfitex.onrender.com/products/new",
+                    `${import.meta.env.VITE_API_BASE_URL}/products/new`,
                     {
                         method: "POST",
                         headers: {

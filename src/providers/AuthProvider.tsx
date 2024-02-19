@@ -23,11 +23,14 @@ const AuthProvider = ({ children }: Props) => {
         initializeFirebase();
         if (getTokenFromCookie()) {
             setIsLoading(true);
-            fetch("https://outfitex.onrender.com/authenticate-with-jwt", {
-                headers: {
-                    Authorization: `Bearer ${getTokenFromCookie()}`,
-                },
-            })
+            fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/authenticate-with-jwt`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getTokenFromCookie()}`,
+                    },
+                }
+            )
                 .then((res) => res.json())
                 .then((data) => {
                     setUser(data.info);

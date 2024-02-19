@@ -13,7 +13,7 @@ const MobileFilter = ({ handleCategoryChange }: Props) => {
         const fetchCollections = async () => {
             try {
                 const res = await fetch(
-                    "https://outfitex.onrender.com/collections"
+                    `${import.meta.env.VITE_API_BASE_URL}/collections`
                 );
 
                 if (!res.ok) {

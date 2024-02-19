@@ -18,9 +18,9 @@ const Shop = () => {
     // }, [sorting]);
 
     useEffect(() => {
-        const url = `https://outfitex.onrender.com/products?sort=${sorting}`;
-
-        console.log(categories);
+        const url = `${
+            import.meta.env.VITE_API_BASE_URL
+        }/products?sort=${sorting}`;
 
         const fetchData = async () => {
             try {

@@ -24,16 +24,19 @@ const Login = () => {
                 return;
             }
 
-            const res = await fetch("https://outfitex.onrender.com/login", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: form.email.value,
-                    password: form.password.value,
-                }),
-            });
+            const res = await fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: form.email.value,
+                        password: form.password.value,
+                    }),
+                }
+            );
 
             if (!res.ok) {
                 toast.error(res.statusText);
