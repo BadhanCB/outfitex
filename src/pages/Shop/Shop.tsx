@@ -20,6 +20,8 @@ const Shop = () => {
     useEffect(() => {
         const url = `https://outfitex.onrender.com/products?sort=${sorting}`;
 
+        console.log(categories);
+
         const fetchData = async () => {
             try {
                 const res = await fetch(url, {
@@ -47,12 +49,6 @@ const Shop = () => {
         fetchData();
     }, [categories, sorting]);
 
-    // useEffect(() => {
-    //     fetch("https://outfitex.onrender.com/products")
-    //         .then((res) => res.json())
-    //         .then((data: ProductResponseData) => setProducts(data.products));
-    // }, []);
-
     const handleCategoryChange: ChangeEventHandler<HTMLInputElement> = (
         e: ChangeEvent<HTMLInputElement>
     ) => {
@@ -60,12 +56,8 @@ const Shop = () => {
             setCategories((prev) => [...prev, e.target.value]);
         } else {
             setCategories((prev) =>
-                prev.splice(prev.indexOf(e.target.value), 1)
+                prev.filter((cat) => cat !== e.target.value)
             );
-            // const newCategories = categories;
-            // const index = newCategories.indexOf(e.target.value);
-            // newCategories.splice(index, 1);
-            // setCategories(newCategories);
         }
     };
 
