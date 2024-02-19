@@ -41,7 +41,7 @@ const CartButton = () => {
             >
                 <ul
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-white h-full overflow-y-scroll hide-scrollbar w-80 sm:w-96 md:w-[25rem] lg:w-[32rem] p-8 relative flex flex-col gap-6 justify-between"
+                    className="bg-white h-full overflow-y-scroll hide-scrollbar w-80 sm:w-96 md:w-[25rem] lg:w-[32rem] p-4 md:p-6 lg:p-8 relative flex flex-col gap-6 justify-between"
                 >
                     <h1 className="text-4xl flex gap-2 items-center">
                         <FiShoppingCart />
@@ -57,33 +57,37 @@ const CartButton = () => {
                                 {cart.map((cp) => (
                                     <li
                                         key={cp._id}
-                                        className="flex gap-2 relative"
+                                        className="flex items-center gap-2 relative"
                                     >
-                                        <div>
-                                            <div className="w-[110px]">
+                                        <div className="w-14 md:w-16 lg:w-20 xl:w-24 h-14 md:h-16 lg:h-20 xl:h-24 overflow-hidden rounded">
+                                            <div>
                                                 <img
                                                     src={`data:${cp?.image?.type};base64, ${cp?.image?.data}`}
                                                     alt={cp.name}
+                                                    className="object-cover"
                                                 />
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className="text-xl">
-                                                {cp.name}
+                                            <h3 className="text-base lg:text-lg xl:text-xl font-bold">
+                                                {cp.name && cp.name?.length > 25
+                                                    ? cp.name?.slice(0, 25) +
+                                                      "..."
+                                                    : cp.name}
                                             </h3>
-                                            <p>
-                                                Quantity:{" "}
-                                                <span className="font-bold">
-                                                    {cp.quantity}
-                                                </span>
-                                            </p>
-                                            <p>
+                                            <p className="text-xs sm:text-sm md:text-base">
                                                 Price:{" "}
                                                 <span className="font-bold">
                                                     {cp.price}
                                                 </span>
                                             </p>
-                                            <p>
+                                            <p className="text-xs sm:text-sm md:text-base">
+                                                Quantity:{" "}
+                                                <span className="font-medium">
+                                                    {cp.quantity}
+                                                </span>
+                                            </p>
+                                            <p className="text-xs sm:text-sm md:text-base">
                                                 Sub-Total:{" "}
                                                 <span className="font-bold">
                                                     {cp.price && cp.quantity
@@ -95,9 +99,9 @@ const CartButton = () => {
                                         </div>
                                         <button
                                             onClick={() => handleRemove(cp._id)}
-                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-3xl text-orange-500"
+                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-orange-500"
                                         >
-                                            <ImBin />
+                                            <ImBin className="text-sm md:text-base lg:text-lg" />
                                         </button>
                                     </li>
                                 ))}
