@@ -17,7 +17,17 @@ const MobileFilter = ({ handleCategoryChange }: Props) => {
                 );
 
                 if (!res.ok) {
-                    toast.error(res.statusText);
+                    let errmsg;
+                    if (res.statusText) {
+                        errmsg = res.statusText;
+                    } else {
+                        const data = await res.json();
+                        errmsg = data.message
+                            ? data.message
+                            : "Failed to Fetch";
+                    }
+
+                    toast.error(errmsg);
                     return;
                 }
 

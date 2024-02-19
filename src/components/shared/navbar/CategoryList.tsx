@@ -15,8 +15,17 @@ const CategoryList = () => {
                     `${import.meta.env.VITE_API_BASE_URL}/collections`
                 );
                 if (!res.ok) {
-                    console.log(res);
-                    toast.error(res.statusText);
+                    let errmsg;
+                    if (res.statusText) {
+                        errmsg = res.statusText;
+                    } else {
+                        const data = await res.json();
+                        errmsg = data.message
+                            ? data.message
+                            : "Failed to Fetch";
+                    }
+
+                    toast.error(errmsg);
                     return;
                 }
                 const data: Collection[] = await res.json();

@@ -44,8 +44,17 @@ const Checkout = () => {
             );
 
             if (!res.ok) {
-                toast.error(res.statusText);
-                setIsloading(false);
+                let errmsg;
+                if (res.statusText) {
+                    errmsg = res.statusText;
+                } else {
+                    const data = await res.json();
+                    errmsg = data.message
+                        ? data.message
+                        : "Failed to Place Order";
+                }
+
+                toast.error(errmsg);
                 return;
             }
 
