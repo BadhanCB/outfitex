@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import PageBanner from "../../components/ui/PageBanner";
 
 const ShopBanner = () => {
     return (
-        <section className="text-center">
+        <PageBanner>
             <h1 className="text-4xl">Shop</h1>
             <ul className="flex justify-center items-center mt-4">
                 <li className="after:content-['/'] after:mx-1 text-gray-400">
@@ -12,7 +13,7 @@ const ShopBanner = () => {
                     <Link to="/shop">Shop</Link>
                 </li>
             </ul>
-        </section>
+        </PageBanner>
     );
 };
 

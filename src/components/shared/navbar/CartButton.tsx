@@ -57,7 +57,7 @@ const CartButton = () => {
                                 {cart.map((cp) => (
                                     <li
                                         key={cp._id}
-                                        className="flex items-center gap-2 relative"
+                                        className="flex items-center gap-4 relative"
                                     >
                                         <div className="w-14 md:w-16 lg:w-20 xl:w-24 h-14 md:h-16 lg:h-20 xl:h-24 overflow-hidden rounded">
                                             <div>
@@ -69,37 +69,38 @@ const CartButton = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className="text-base lg:text-lg xl:text-xl font-bold">
+                                            <h3 className="text-base lg:text-lg xl:text-xl font-bold tracking-wider">
                                                 {cp.name && cp.name?.length > 25
                                                     ? cp.name?.slice(0, 25) +
                                                       "..."
                                                     : cp.name}
                                             </h3>
                                             <p className="text-xs sm:text-sm md:text-base">
-                                                Price:{" "}
-                                                <span className="font-bold">
-                                                    {cp.price}
+                                                <span className="text-gray-400">
+                                                    Price:{" "}
                                                 </span>
+                                                {cp.price}
                                             </p>
                                             <p className="text-xs sm:text-sm md:text-base">
-                                                Quantity:{" "}
+                                                <span className="text-gray-400">
+                                                    Quantity:{" "}
+                                                </span>
                                                 <span className="font-medium">
                                                     {cp.quantity}
                                                 </span>
                                             </p>
                                             <p className="text-xs sm:text-sm md:text-base">
-                                                Sub-Total:{" "}
-                                                <span className="font-bold">
-                                                    {cp.price && cp.quantity
-                                                        ? cp?.price *
-                                                          cp?.quantity
-                                                        : ""}
+                                                <span className="text-gray-400">
+                                                    Sub-Total:{" "}
                                                 </span>
+                                                {cp.price && cp.quantity
+                                                    ? cp?.price * cp?.quantity
+                                                    : ""}
                                             </p>
                                         </div>
                                         <button
                                             onClick={() => handleRemove(cp._id)}
-                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-orange-500 tooltip-left"
+                                            className="absolute top-1/2 -translate-y-1/2 right-0 text-orange-400 tooltip-left"
                                             data-tooltip="Remove from Cart"
                                         >
                                             <ImBin className="text-sm md:text-base lg:text-lg" />
