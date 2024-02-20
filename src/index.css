@@ -137,10 +137,6 @@
         );
     }
 
-    .carousel::-webkit-scrollbar {
-        display: none;
-    }
-
     @keyframes heartbeat {
         0% {
             transform: scale(0.75);

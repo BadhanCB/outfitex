@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Footer from "../components/shared/footer/Footer";
 import Navbar from "../components/shared/navbar/Navbar";
-import Skeleton from "../components/shared/skeleton/Skeleton";
+import MainSkeleton from "../components/shared/skeletons/MainSkeleton";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
@@ -9,7 +9,7 @@ const MainLayout = () => {
         <div className="font-urbanist">
             <Navbar />
             <main>
-                <Suspense fallback={<Skeleton />}>
+                <Suspense fallback={<MainSkeleton />}>
                     <Outlet />
                 </Suspense>
             </main>

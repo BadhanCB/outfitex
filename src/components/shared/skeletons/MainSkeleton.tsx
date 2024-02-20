@@ -1,4 +1,4 @@
-const Skeleton = () => {
+const MainSkeleton = () => {
     return (
         <section className="w-full min-h-[calc(100vh-120px)] grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-8 animate-pulse p-2 md:p-4 lg:p-8">
             <div className="bg-slate-200 md:col-span-2 flex flex-col p-8 justify-between gap-3">
@@ -65,4 +65,4 @@ const Skeleton = () => {
     );
 };
 
-export default Skeleton;
+export default MainSkeleton;

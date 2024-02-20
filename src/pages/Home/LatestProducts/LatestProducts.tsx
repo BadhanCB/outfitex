@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../types";
-import ProductCard from "../../components/shared/ProductCard/ProductCard";
+import { Product } from "../../../types";
+import ProductCard from "../../../components/shared/ProductCard/ProductCard";
 
 const LatestProducts = () => {
     const [collection, setCollection] = useState<string>("");

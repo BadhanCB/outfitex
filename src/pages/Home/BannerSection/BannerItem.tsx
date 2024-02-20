@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import OutlineButton from "../../components/ui/OutlineButton";
+import OutlineButton from "../../../components/ui/OutlineButton";
 
 type Props = {
     title?: string;

@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import Skeleton from "../components/shared/skeleton/Skeleton";
+import MainSkeleton from "../components/shared/skeletons/MainSkeleton";
 
 type Props = {
     children: React.ReactNode;
@@ -10,7 +10,7 @@ const SellerPrivateRoute = ({ children }: Props) => {
     const { user, isLoading } = useAuth();
 
     if (isLoading) {
-        return <Skeleton />;
+        return <MainSkeleton />;
     }
 
     if (user.email && user.role === "seller") {
