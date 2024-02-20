@@ -70,7 +70,7 @@ const SingleProduct = () => {
                                         prev === 1 ? 1 : prev - 1
                                     )
                                 }
-                                className="px-4 py-2 relative tooltip"
+                                className="px-4 py-2 relative tooltip-top"
                                 data-tooltip="Decrease Quantity"
                             >
                                 <RiSubtractLine />
@@ -80,7 +80,7 @@ const SingleProduct = () => {
                             </p>
                             <button
                                 onClick={() => setQuantity((prev) => prev + 1)}
-                                className="px-4 py-2 relative tooltip"
+                                className="px-4 py-2 relative tooltip-top"
                                 data-tooltip="Increase Quantity"
                             >
                                 <IoMdAdd />
@@ -99,7 +99,7 @@ const SingleProduct = () => {
                         </button>
                         <button
                             onClick={handleAddToWishlist}
-                            className="p-3 border-2 rounded-md relative tooltip text-xl"
+                            className="p-3 border-2 rounded-md relative tooltip-top text-xl"
                             data-tooltip="Add to Wishlist"
                         >
                             <FaRegHeart className="animate-heartbeat" />

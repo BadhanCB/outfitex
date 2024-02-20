@@ -1,4 +1,4 @@
-const Overview = () => {
+const UserAccount = () => {
     return (
         <div>
             <h1>Overview</h1>
@@ -6,4 +6,4 @@ const Overview = () => {
     );
 };
 
-export default Overview;
+export default UserAccount;

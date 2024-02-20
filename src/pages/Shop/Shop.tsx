@@ -13,10 +13,6 @@ const Shop = () => {
     const [categories, setCategories] = useState<string[]>([]);
     const [sorting, setSorting] = useState<string>("");
 
-    // useEffect(() => {
-    //     console.log(sorting);
-    // }, [sorting]);
-
     useEffect(() => {
         const url = `${
             import.meta.env.VITE_API_BASE_URL

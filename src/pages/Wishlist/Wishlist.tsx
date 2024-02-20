@@ -6,7 +6,6 @@ import { WishListType } from "../../types";
 
 const Wishlist = () => {
     const { wishlist, setWishList, setCart } = useAuth();
-    console.log(wishlist);
 
     const handleAddToCart = (product: WishListType) => {
         setCart((prevCrt) => {

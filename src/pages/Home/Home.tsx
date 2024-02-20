@@ -10,10 +10,10 @@ const Home = () => {
         <>
             <BannerSection />
             <CategorySection />
-            <BrandPartners />
             <TopSellingProducts />
-            <ServiceOffer />
+            <BrandPartners />
             <LatestProducts />
+            <ServiceOffer />
         </>
     );
 };

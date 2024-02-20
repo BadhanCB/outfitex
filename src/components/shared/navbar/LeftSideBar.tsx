@@ -15,10 +15,10 @@ const LeftSideBar = () => {
         <li className="relative">
             <button
                 onClick={() => setIsOpenSideBar(true)}
-                className="align-middle font-tenor text-2xl tooltip"
+                className="align-middle font-tenor tooltip-top"
                 data-tooltip="Collections"
             >
-                <FiAlignLeft />
+                <FiAlignLeft className="text-2xl" />
             </button>
             <aside
                 onClick={handleClick}

@@ -28,7 +28,7 @@ const UserInteractionOption = () => {
                 ) : (
                     <Link
                         to="/login"
-                        className="m-0 align-middle relative tooltip"
+                        className="m-0 align-middle relative tooltip-top"
                         data-tooltip="Login"
                     >
                         <FiLogIn className="text-2xl hover:text-amber-400 transition-colors" />
@@ -38,7 +38,7 @@ const UserInteractionOption = () => {
             <li>
                 <Link
                     to="/wishlist"
-                    className="relative tooltip"
+                    className="relative tooltip-top"
                     data-tooltip="Wishlist"
                 >
                     <FiHeart className="text-2xl hover:text-amber-400 transition-colors" />

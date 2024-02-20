@@ -1,35 +1,44 @@
 import { lazy } from "react";
 import "./App.css";
-import MainLayout from "./layouts/MainLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./providers/AuthProvider";
 import { Toaster } from "react-hot-toast";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import SellerPrivateRoute from "./routes/SellerPrivateRoute";
-import UserPrivateRoute from "./routes/UserPrivateRoute";
-import Category from "./pages/Category/Category";
 
+// Basic Public Pages
+import MainLayout from "./layouts/MainLayout";
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct/SingleProduct"));
+const Category = lazy(() => import("./pages/Category/Category"));
 const Collection = lazy(() => import("./pages/Collection/Collection"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const About = lazy(() => import("./pages/About/About"));
+
+// Inventory Related page
 const InventoryLayout = lazy(() => import("./layouts/InventoryLayout"));
 const InventoryOverview = lazy(
     () => import("./pages/InventoryOverview/InventoryOverview")
 );
 const AddProduct = lazy(() => import("./pages/AddProduct/AddProduct"));
+
+// Auth Related Page
 const Login = lazy(() => import("./pages/Login/Login"));
 const Signup = lazy(() => import("./pages/Signup/Signup"));
 const SellerRegistration = lazy(
     () => import("./pages/SellerRegistration/SellerRegistration")
 );
-const Overview = lazy(() => import("./pages/Overview/Overview"));
+
+// Dashboard Related Pages
+const DashboardLayout = lazy(() => import("./layouts/DashboardLayout"));
+const UserAccount = lazy(() => import("./pages/UserAccount/UserAccount"));
 const Wishlist = lazy(() => import("./pages/Wishlist/Wishlist"));
 const Cart = lazy(() => import("./pages/Cart/Cart"));
+const UserOrders = lazy(() => import("./pages/UserOrders/UserOrders"));
 const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
-const Orders = lazy(() => import("./pages/Orders/Orders"));
+
+//Private Routes
+import SellerPrivateRoute from "./routes/SellerPrivateRoute";
+import UserPrivateRoute from "./routes/UserPrivateRoute";
 
 function App() {
     const router = createBrowserRouter([
@@ -102,13 +111,15 @@ function App() {
                     path: "/dashboard",
                     element: (
                         <UserPrivateRoute>
-                            <Dashboard />
+                            <DashboardLayout />
                         </UserPrivateRoute>
                     ),
                     children: [
-                        { index: true, element: <Overview /> },
-                        { path: "/dashboard/orders", element: <Orders /> },
+                        { index: true, element: <UserAccount /> },
+                        { path: "/dashboard/orders", element: <UserOrders /> },
                         { path: "/dashboard/checkout", element: <Checkout /> },
+                        { path: "/dashboard/wishlist", element: <Wishlist /> },
+                        { path: "/dashboard/cart", element: <Cart /> },
                     ],
                 },
                 { path: "/cart", element: <Cart /> },

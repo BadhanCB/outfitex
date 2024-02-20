@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
 const BasicNavigationOptions = () => {
@@ -7,64 +7,92 @@ const BasicNavigationOptions = () => {
     return (
         <div className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto">
             <li>
-                <Link
-                    className="hover:text-amber-400 transition-colors animated-border-b"
+                <NavLink
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-amber-400 transition-colors animated-border-b"
+                            : "hover:text-amber-400 transition-colors animated-border-b"
+                    }
                     to="/"
                 >
                     Home
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link
-                    className="hover:text-amber-400 transition-colors animated-border-b"
+                <NavLink
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-amber-400 transition-colors animated-border-b"
+                            : "hover:text-amber-400 transition-colors animated-border-b"
+                    }
                     to="/shop"
                 >
                     Shop
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link
-                    className="hover:text-amber-400 transition-colors animated-border-b"
+                <NavLink
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-amber-400 transition-colors animated-border-b"
+                            : "hover:text-amber-400 transition-colors animated-border-b"
+                    }
                     to="/blogs"
                 >
                     Blogs
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link
-                    className="hover:text-amber-400 transition-colors animated-border-b"
+                <NavLink
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-amber-400 transition-colors animated-border-b"
+                            : "hover:text-amber-400 transition-colors animated-border-b"
+                    }
                     to="/about"
                 >
                     About
-                </Link>
+                </NavLink>
             </li>
             {user?.role === "user" ? (
                 <li>
-                    <Link
-                        className="hover:text-amber-400 transition-colors animated-border-b"
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-amber-400 transition-colors animated-border-b"
+                                : "hover:text-amber-400 transition-colors animated-border-b"
+                        }
                         to="/dashboard"
                     >
                         Dashboard
-                    </Link>
+                    </NavLink>
                 </li>
             ) : user?.role === "seller" ? (
                 <li>
-                    <Link
-                        className="hover:text-amber-400 transition-colors animated-border-b"
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-amber-400 transition-colors animated-border-b"
+                                : "hover:text-amber-400 transition-colors animated-border-b"
+                        }
                         to="/inventory"
                     >
                         Inventory
-                    </Link>
+                    </NavLink>
                 </li>
             ) : (
                 user?.role === "admin" && (
                     <li>
-                        <Link
-                            className="hover:text-amber-400 transition-colors animated-border-b"
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-amber-400 transition-colors animated-border-b"
+                                    : "hover:text-amber-400 transition-colors animated-border-b"
+                            }
                             to="/admin-panel"
                         >
                             Admin Panel
-                        </Link>
+                        </NavLink>
                     </li>
                 )
             )}

@@ -43,6 +43,9 @@ const ShopProductCard = ({ product, colNum }: Props) => {
             <div className={`p-4 ${colNum === 1 && "col-span-2"}`}>
                 {colNum !== 1 ? (
                     <>
+                        <p className="uppercase text-amber-700">
+                            {product.category}
+                        </p>
                         <Link
                             to={`/product/${product.slug}`}
                             className="text-lg font-semibold"
@@ -71,7 +74,7 @@ const ShopProductCard = ({ product, colNum }: Props) => {
                             <SingleColWishListBtn product={product} />
                             <Link
                                 to={`/product/${product.slug}`}
-                                className="tooltip relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md transition duration-300"
+                                className="tooltip-top relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md transition duration-300"
                                 data-tooltip="View"
                             >
                                 <TbEye className="text-2xl" />

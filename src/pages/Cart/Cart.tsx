@@ -98,7 +98,7 @@ const Cart = () => {
                                                 onClick={() =>
                                                     handleDecreaseQty(cp._id)
                                                 }
-                                                className="px-4 py-2 relative tooltip"
+                                                className="px-4 py-2 relative tooltip-top"
                                                 data-tooltip="Decrease Quantity"
                                             >
                                                 <RiSubtractLine />
@@ -110,7 +110,7 @@ const Cart = () => {
                                                 onClick={() =>
                                                     handleIncreaseQty(cp._id)
                                                 }
-                                                className="px-4 py-2 relative tooltip"
+                                                className="px-4 py-2 relative tooltip-top"
                                                 data-tooltip="Increase Quantity"
                                             >
                                                 <IoMdAdd />

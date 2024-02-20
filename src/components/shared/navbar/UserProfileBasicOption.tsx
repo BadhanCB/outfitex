@@ -16,7 +16,7 @@ const UserProfileBasicOption = () => {
                     e.stopPropagation();
                     setIsShow((prev) => !prev);
                 }}
-                className="m-0 align-middle relative tooltip"
+                className="m-0 align-middle relative tooltip-top"
                 data-tooltip="Profile"
             >
                 <FiUser className="text-2xl hover:text-amber-400 transition-colors" />

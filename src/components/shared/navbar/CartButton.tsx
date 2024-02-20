@@ -23,7 +23,7 @@ const CartButton = () => {
         <li className="relative">
             <button
                 onClick={() => setIsOpenSideBar(true)}
-                className="m-0 align-middle relative tooltip"
+                className="m-0 align-middle relative tooltip-top"
                 data-tooltip="Cart"
             >
                 <FiShoppingCart className="text-2xl hover:text-amber-400 transition-colors" />

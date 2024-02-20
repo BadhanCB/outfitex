@@ -16,10 +16,10 @@
     }
 
     /* Tooltip */
-    .tooltip {
+    .tooltip-top {
         --scale: 0;
     }
-    .tooltip::before {
+    .tooltip-top::before {
         content: attr(data-tooltip);
         position: absolute;
         padding: 5px 10px;
@@ -36,11 +36,11 @@
         transition: transform 200ms;
         transform-origin: bottom center;
     }
-    .tooltip:hover::before,
-    .tooltip:hover::after {
+    .tooltip-top:hover::before,
+    .tooltip-top:hover::after {
         --scale: 1;
     }
-    .tooltip::after {
+    .tooltip-top::after {
         content: "";
         border: 10px solid transparent;
         border-top-color: rgb(30, 50, 50);

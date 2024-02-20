@@ -26,7 +26,7 @@ const SingleColWishListBtn = ({ product }: Props) => {
     return (
         <button
             onClick={handleClick}
-            className="tooltip relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md transition duration-300"
+            className="tooltip-top relative bg-white hover:bg-gray-500 hover:text-gray-50 p-2 rounded-xl shadow-md transition duration-300"
             data-tooltip="Add to WishList"
         >
             <FaRegHeart className="text-2xl animate-heartbeat" />

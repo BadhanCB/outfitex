@@ -13,7 +13,7 @@ const LatestProducts = () => {
     }, []);
 
     return (
-        <section className="bg-gray-100 py-20">
+        <section className="bg-gray-50 py-20">
             <div className="wrapper px-4 md:px-8 lg:px-12">
                 <h2 className="text-2xl md:text-2xl lg:text-4xl text-center">
                     New Arrivals
@@ -26,9 +26,9 @@ const LatestProducts = () => {
                         <li
                             className={`cursor-pointer  ${
                                 !collection
-                                    ? "text-teal-700 border-b border-gray-600"
+                                    ? "text-amber-500"
                                     : "text-slate-400"
-                            } hover:text-slate-700`}
+                            } hover:text-amber-500 animated-border-b`}
                             onClick={() => setCollection("")}
                         >
                             All
@@ -36,9 +36,9 @@ const LatestProducts = () => {
                         <li
                             className={`cursor-pointer  ${
                                 collection === "women"
-                                    ? "text-teal-700 border-b border-gray-600"
+                                    ? "text-amber-500"
                                     : "text-slate-400"
-                            } hover:text-slate-700`}
+                            } hover:text-amber-500 animated-border-b`}
                             onClick={() => setCollection("women")}
                         >
                             Women
@@ -46,9 +46,9 @@ const LatestProducts = () => {
                         <li
                             className={`cursor-pointer  ${
                                 collection === "men"
-                                    ? "text-teal-700 border-b border-gray-600"
+                                    ? "text-amber-500"
                                     : "text-slate-400"
-                            } hover:text-slate-700`}
+                            } hover:text-amber-500 animated-border-b`}
                             onClick={() => setCollection("men")}
                         >
                             Men
@@ -56,9 +56,9 @@ const LatestProducts = () => {
                         <li
                             className={`cursor-pointer  ${
                                 collection === "kids"
-                                    ? "text-teal-700 border-b border-gray-600"
+                                    ? "text-amber-500"
                                     : "text-slate-400"
-                            } hover:text-slate-700`}
+                            } hover:text-amber-500 animated-border-b`}
                             onClick={() => setCollection("kids")}
                         >
                             Kids
@@ -66,9 +66,9 @@ const LatestProducts = () => {
                         <li
                             className={`cursor-pointer  ${
                                 collection === "accesories"
-                                    ? "text-teal-700 border-b border-gray-600"
+                                    ? "text-amber-500"
                                     : "text-slate-400"
-                            } hover:text-slate-700`}
+                            } hover:text-amber-500 animated-border-b`}
                             onClick={() => setCollection("accesories")}
                         >
                             Accesories
