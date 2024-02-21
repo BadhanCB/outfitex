@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Product } from "../../../types";
+import TopSellingSectionSkeleton from "../../../components/shared/skeletons/TopSellingSectionSkeleton";
 const ProductSlider = lazy(() => import("./ProductSlider"));
 
 const TopSellingProducts = () => {
@@ -19,7 +20,7 @@ const TopSellingProducts = () => {
                     Our Best Selling Items
                 </h2>
                 <p className="text-lg text-center">Product in focus</p>
-                <Suspense fallback={<p>Loading...</p>}>
+                <Suspense fallback={<TopSellingSectionSkeleton />}>
                     <ProductSlider products={products} />
                 </Suspense>
             </div>
