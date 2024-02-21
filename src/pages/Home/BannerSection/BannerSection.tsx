@@ -44,7 +44,7 @@ const BannerSection = () => {
     }, []);
 
     return (
-        <section className="relative bg-gray-50">
+        <section className="relative bg-gray-100">
             <Suspense fallback={<BannerSkeleton />}>
                 <BannerCarousel featuredProducts={featuredProducts} />
             </Suspense>
