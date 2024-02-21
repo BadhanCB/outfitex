@@ -15,6 +15,7 @@ const ProductCard = ({ product }: Props) => {
                 <img
                     src={`data:${product?.image?.type};base64, ${product?.image?.data}`}
                     alt={product.name}
+                    loading="lazy"
                     className="h-full w-full object-cover"
                     draggable={false}
                 />
