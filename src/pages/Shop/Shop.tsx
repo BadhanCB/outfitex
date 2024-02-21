@@ -1,10 +1,19 @@
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
-import ShopProductCard from "./ShopProductCard";
+import {
+    ChangeEvent,
+    ChangeEventHandler,
+    Suspense,
+    lazy,
+    useEffect,
+    useState,
+} from "react";
+
 import { Product, ProductResponseData } from "../../types";
 import ShopBanner from "./ShopBanner";
 import toast from "react-hot-toast";
 import FilterOptions from "./FilterOptions";
 import MobileFilter from "./MobileFilter";
+import ProdCardsSecSkeleton from "../../components/shared/skeletons/ProdCardsSecSkeleton";
+const ShopProductsSecton = lazy(() => import("./ShopProductsSecton"));
 
 const Shop = () => {
     const [colNum, setColNum] = useState<number>(3);
@@ -214,27 +223,12 @@ const Shop = () => {
                             </select>
                         </div>
                     </div>
-                    <div
-                        className={`grid grid-cols-1 md:grid-cols-2 ${
-                            colNum === 1
-                                ? "lg:grid-cols-1"
-                                : colNum === 2
-                                ? "lg:grid-cols-2"
-                                : colNum === 3
-                                ? "lg:grid-cols-3"
-                                : colNum === 4 && "lg:grid-cols-4"
-                        } mt-12 gap-8`}
-                    >
-                        {!products?.length
-                            ? null
-                            : products.map((pd) => (
-                                  <ShopProductCard
-                                      key={pd._id}
-                                      product={pd}
-                                      colNum={colNum}
-                                  />
-                              ))}
-                    </div>
+                    <Suspense fallback={<ProdCardsSecSkeleton />}>
+                        <ShopProductsSecton
+                            products={products}
+                            colNum={colNum}
+                        />
+                    </Suspense>
                 </div>
             </section>
         </>
