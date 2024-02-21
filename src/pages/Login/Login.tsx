@@ -1,18 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.svg";
-import { FormEvent, FormEventHandler } from "react";
+import { FormEvent, FormEventHandler, useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { setTokenToCookie } from "../../lib/utils";
+import { FiLoader } from "react-icons/fi";
 
 const Login = () => {
     const navigate = useNavigate();
     const { setUser } = useAuth();
+    const [isLoading, setIsloading] = useState(false);
 
     const handleLogin: FormEventHandler<HTMLFormElement> = async (
         e: FormEvent<HTMLFormElement>
     ) => {
         e.preventDefault();
+        setIsloading(true);
         try {
             const form = e.target as HTMLFormElement & {
                 email: { value: string };
@@ -21,6 +24,7 @@ const Login = () => {
 
             if (!form.email.value || !form.password.value) {
                 toast.error("Provide all information");
+                setIsloading(false);
                 return;
             }
 
@@ -48,6 +52,7 @@ const Login = () => {
                 }
 
                 toast.error(errmsg);
+                setIsloading(false);
                 return;
             }
 
@@ -56,6 +61,7 @@ const Login = () => {
                 toast.success(data.message);
                 setUser(data.info);
                 setTokenToCookie(data.token);
+                setIsloading(false);
                 navigate("/shop", { replace: true });
             }
         } catch (error) {
@@ -63,6 +69,7 @@ const Login = () => {
             if (error instanceof Error) {
                 errorMessage = error.message;
             }
+            setIsloading(false);
             toast.error(errorMessage);
         }
     };
@@ -104,10 +111,12 @@ const Login = () => {
                         />
                     </div>
                     <button
+                        disabled={isLoading}
                         type="submit"
-                        className="px-8 py-3 bg-orange-600 hover:bg-orange-500 rounded text-white w-full"
+                        className="flex justify-center items-center gap-2 px-8 py-3 bg-orange-600 hover:bg-orange-500 rounded text-white w-full disabled:bg-orange-300 disabled:cursor-not-allowed"
                     >
-                        Sign In
+                        {isLoading && <FiLoader className="animate-spin" />}
+                        {isLoading ? "Submitting..." : "Login"}
                     </button>
                 </form>
                 <p className="mt-4 text-center">
