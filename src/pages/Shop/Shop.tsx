@@ -1,7 +1,6 @@
 import {
     ChangeEvent,
     ChangeEventHandler,
-    Suspense,
     lazy,
     useEffect,
     useState,
@@ -21,6 +20,7 @@ const Shop = () => {
     // const [totalProducts, setTotalProducts] = useState<number>(0);
     const [categories, setCategories] = useState<string[]>([]);
     const [sorting, setSorting] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const url = `${
@@ -28,6 +28,7 @@ const Shop = () => {
         }/products?sort=${sorting}`;
 
         const fetchData = async () => {
+            setIsLoading(true);
             try {
                 const res = await fetch(url, {
                     method: "POST",
@@ -47,17 +48,20 @@ const Shop = () => {
                     }
 
                     toast.error(errmsg);
+                    setIsLoading(false);
                     return;
                 }
 
                 const data: ProductResponseData = await res.json();
                 setProducts(data.products);
+                setIsLoading(false);
             } catch (error) {
                 let errMsg = "Failed to Fetch";
                 if (error instanceof Error) {
                     errMsg = error.message;
                 }
                 toast.error(errMsg);
+                setIsLoading(false);
             }
         };
 
@@ -223,12 +227,14 @@ const Shop = () => {
                             </select>
                         </div>
                     </div>
-                    <Suspense fallback={<ProdCardsSecSkeleton />}>
+                    {isLoading ? (
+                        <ProdCardsSecSkeleton />
+                    ) : (
                         <ShopProductsSecton
                             products={products}
                             colNum={colNum}
                         />
-                    </Suspense>
+                    )}
                 </div>
             </section>
         </>

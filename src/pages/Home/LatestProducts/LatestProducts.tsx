@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Product } from "../../../types";
 import FilterOptions from "./FilterOptions";
 import ProdCardsSecSkeleton from "../../../components/shared/skeletons/ProdCardsSecSkeleton";
@@ -7,11 +7,16 @@ const ProductCardsSection = lazy(() => import("./ProductCardsSection"));
 const LatestProducts = () => {
     const [collection, setCollection] = useState<string>("");
     const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(`${import.meta.env.VITE_API_BASE_URL}/products/latest`)
             .then((res) => res.json())
-            .then((data) => setProducts(data));
+            .then((data) => {
+                setProducts(data);
+                setIsLoading(false);
+            });
     }, []);
 
     return (
@@ -28,12 +33,15 @@ const LatestProducts = () => {
                         collection={collection}
                         setCollection={setCollection}
                     />
-                    <Suspense fallback={<ProdCardsSecSkeleton />}>
+
+                    {isLoading ? (
+                        <ProdCardsSecSkeleton />
+                    ) : (
                         <ProductCardsSection
                             products={products}
                             collection={collection}
                         />
-                    </Suspense>
+                    )}
                 </div>
             </div>
         </section>

@@ -3,7 +3,7 @@ import placeholderPhoto from "../../assets/images/placeholder.svg";
 
 const UserAccount = () => {
     const { user } = useAuth();
-    const { _id, name, userName, email, phone, address, photo } = user;
+    const { name, userName, email, phone, address, photo } = user;
     return (
         <div className="p-4">
             <div className="flex items-center gap-4">
