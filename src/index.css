@@ -219,7 +219,6 @@
     }
     .active-carousel img {
         opacity: 1;
-        transition: 1.5s ease;
     }
 
     .carousel h3 {

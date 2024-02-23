@@ -28,7 +28,7 @@ const BannerItem = ({
             }`}
             style={{ transform: `translate(${-100 * activeIndex}%)` }}
         >
-            <div className="order-2 md:order-1 md:w-3/4 self-center justify-self-center">
+            <div className="order-2 md:order-1 place-self-center">
                 <h3 className="text-lg font-extralight uppercase">{title}</h3>
                 <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium mb-6 md:mb-8 lg:mb-10">
                     {productName}
