@@ -3,6 +3,7 @@ import { Product } from "../../../types";
 import FilterOptions from "./FilterOptions";
 import ProdCardsSecSkeleton from "../../../components/shared/skeletons/ProdCardsSecSkeleton";
 const ProductCardsSection = lazy(() => import("./ProductCardsSection"));
+import { motion } from "framer-motion";
 
 const LatestProducts = () => {
     const [collection, setCollection] = useState<string>("");
@@ -19,16 +20,38 @@ const LatestProducts = () => {
             });
     }, []);
 
+    const varients = {
+        initial: { opacity: 0, y: -50 },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 1, staggerChildren: 0.3 },
+        },
+    };
+
     return (
         <section className="bg-gray-50 py-20">
-            <div className="wrapper px-4 md:px-8 lg:px-12">
-                <h2 className="text-2xl md:text-2xl lg:text-4xl text-center">
-                    New Arrivals
-                </h2>
-                <p className="text-lg text-center capitalize">
-                    Latest product for you
-                </p>
-                <div className="mt-4">
+            <motion.div className="wrapper px-4 md:px-8 lg:px-12">
+                <motion.div
+                    variants={varients}
+                    initial="initial"
+                    whileInView="animate"
+                >
+                    <motion.h2
+                        variants={varients}
+                        className="text-2xl md:text-2xl lg:text-4xl text-center"
+                    >
+                        New Arrivals
+                    </motion.h2>
+                    <motion.p
+                        variants={varients}
+                        className="text-lg text-center capitalize"
+                    >
+                        Latest product for you
+                    </motion.p>
+                </motion.div>
+
+                <div className="mt-4 overflow-hidden">
                     <FilterOptions
                         collection={collection}
                         setCollection={setCollection}
@@ -43,7 +66,7 @@ const LatestProducts = () => {
                         />
                     )}
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };

@@ -32,19 +32,19 @@ const ProductSlider = ({ products }: Props) => {
     };
 
     const varients = {
-        initial: { x: 200, opacity: 0 },
+        initial: { y: 200, opacity: 0 },
         animate: {
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: {
-                duration: 1.7,
-                staggerChildren: 0.3,
+                duration: 1,
+                staggerChildren: 0.2,
             },
         },
     };
 
     return (
-        <div className="relative">
+        <div className="relative overflow-hidden">
             <div className="text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-end gap-2 w-full my-4">
                 <button
                     onClick={handlePrev}
@@ -61,7 +61,7 @@ const ProductSlider = ({ products }: Props) => {
             </div>
             <motion.div
                 ref={sliderRef}
-                className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto scroll-smooth snap-mandatory snap-x"
+                className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto overflow-y-hidden scroll-smooth snap-mandatory snap-x"
                 variants={varients}
                 initial="initial"
                 whileInView="animate"

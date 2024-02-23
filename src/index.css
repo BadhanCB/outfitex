@@ -208,7 +208,8 @@
     }
     .carousel img {
         opacity: 0;
-        transition: 2s ease;
+        scale: 0;
+        transition: 1s ease;
     }
 
     .active-carousel h3,
@@ -219,6 +220,7 @@
     }
     .active-carousel img {
         opacity: 1;
+        scale: 1;
     }
 
     .carousel h3 {

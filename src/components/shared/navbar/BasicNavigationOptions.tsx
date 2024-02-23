@@ -5,7 +5,7 @@ const BasicNavigationOptions = () => {
     const { user } = useAuth();
 
     return (
-        <div className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto">
+        <div className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto uppercase">
             <li>
                 <NavLink
                     className={({ isActive }) =>

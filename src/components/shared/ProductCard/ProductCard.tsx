@@ -3,6 +3,7 @@ import { Product } from "../../../types";
 import AddtoWishListBtn from "../../ui/AddtoWishListBtn";
 import AddtoCartBtn from "../../ui/AddtoCartBtn";
 import ViewProductLinkBtn from "../../ui/ViewProductLinkBtn";
+import { motion } from "framer-motion";
 
 type Props = {
     product: Product;
@@ -10,7 +11,13 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
     return (
-        <div className="h-full w-full bg-gray-50 group overflow-hidden">
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className="h-full w-full bg-gray-50 group overflow-hidden"
+        >
             <div className="h-96 w-full bg-gray-200 relative">
                 <img
                     src={`data:${product?.image?.type};base64, ${product?.image?.data}`}
@@ -36,7 +43,7 @@ const ProductCard = ({ product }: Props) => {
                 </Link>
                 <p>$ {product.price}</p>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
