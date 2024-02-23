@@ -5,6 +5,7 @@ import AddtoCartBtn from "../../../components/ui/AddtoCartBtn";
 import AddtoWishListBtn from "../../../components/ui/AddtoWishListBtn";
 import { Link } from "react-router-dom";
 import ViewProductLinkBtn from "../../../components/ui/ViewProductLinkBtn";
+import { motion } from "framer-motion";
 
 type Props = {
     products: Product[];
@@ -30,6 +31,18 @@ const ProductSlider = ({ products }: Props) => {
         }
     };
 
+    const varients = {
+        initial: { x: 200, opacity: 0 },
+        animate: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                duration: 1.7,
+                staggerChildren: 0.3,
+            },
+        },
+    };
+
     return (
         <div className="relative">
             <div className="text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-end gap-2 w-full my-4">
@@ -46,18 +59,22 @@ const ProductSlider = ({ products }: Props) => {
                     <FiChevronRight />
                 </button>
             </div>
-            <div
+            <motion.div
                 ref={sliderRef}
                 className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto scroll-smooth snap-mandatory snap-x"
+                variants={varients}
+                initial="initial"
+                whileInView="animate"
             >
                 {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
                 {!products.length
                     ? null
                     : products.map((product) => (
-                          <div
+                          <motion.div
                               ref={cardRef}
                               key={product._id}
                               className="h-full w-full bg-gray-50 group overflow-hidden snap-start"
+                              variants={varients}
                           >
                               <div className="h-96 w-full bg-gray-200 relative">
                                   <img
@@ -83,9 +100,9 @@ const ProductSlider = ({ products }: Props) => {
                                   </Link>
                                   <p>$ {product.price}</p>
                               </div>
-                          </div>
+                          </motion.div>
                       ))}
-            </div>
+            </motion.div>
         </div>
     );
 };
