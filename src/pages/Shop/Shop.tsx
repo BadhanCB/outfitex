@@ -1,14 +1,7 @@
-import {
-    ChangeEvent,
-    ChangeEventHandler,
-    Suspense,
-    lazy,
-    useState,
-} from "react";
+import { ChangeEvent, ChangeEventHandler, lazy, useState } from "react";
 import ShopBanner from "./ShopBanner";
 import FilterOptions from "./FilterOptions";
 import MobileFilter from "./MobileFilter";
-import ProdCardsSecSkeleton from "../../components/shared/skeletons/ProdCardsSecSkeleton";
 import ColumnSelectOption from "./ColumnSelectOption";
 import SortingOption from "./SortingOption";
 const ShopProductsSecton = lazy(() => import("./ShopProductsSecton"));
@@ -59,13 +52,12 @@ const Shop = () => {
                             handleSortingChange={handleSortingChange}
                         />
                     </div>
-                    <Suspense fallback={<ProdCardsSecSkeleton />}>
-                        <ShopProductsSecton
-                            colNum={colNum}
-                            sorting={sorting}
-                            categories={categories}
-                        />
-                    </Suspense>
+
+                    <ShopProductsSecton
+                        colNum={colNum}
+                        sorting={sorting}
+                        categories={categories}
+                    />
                 </div>
             </section>
         </>
