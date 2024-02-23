@@ -198,4 +198,36 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
+    .carousel h3,
+    .carousel h1,
+    .carousel .carousel-btn {
+        transform: translateY(-5rem);
+        opacity: 0;
+        transition: 1s ease;
+    }
+    .carousel img {
+        transform: translateY(10rem);
+        opacity: 0;
+        transition: 1s ease;
+    }
+
+    .active-carousel h3,
+    .active-carousel h1,
+    .active-carousel .carousel-btn {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+    .active-carousel img {
+        transform: translateY(0rem);
+        opacity: 1;
+        transition: 1.5s ease;
+    }
+
+    .carousel h3 {
+        transition-delay: 600ms;
+    }
+    .carousel h1 {
+        transition-delay: 300ms;
+    }
 }

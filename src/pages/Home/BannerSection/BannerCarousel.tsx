@@ -48,13 +48,14 @@ const BannerCarousel = ({ featuredProducts }: Props) => {
             <div className="wrapper min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-118px)] 2xl:min-h-fit w-full flex flex-nowrap items-center overflow-hidden">
                 {!featuredProducts.length
                     ? null
-                    : featuredProducts.map((itm) => (
+                    : featuredProducts.map((itm, index) => (
                           <BannerItem
                               key={itm._id}
                               img={itm.image}
                               productName={itm.name}
                               title={itm.category}
                               slug={itm.slug}
+                              index={index}
                               activeIndex={activeIndex}
                           />
                       ))}
