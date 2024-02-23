@@ -207,9 +207,8 @@
         transition: 1s ease;
     }
     .carousel img {
-        transform: translateY(10rem);
         opacity: 0;
-        transition: 1s ease;
+        transition: 2s ease;
     }
 
     .active-carousel h3,
@@ -219,7 +218,6 @@
         opacity: 1;
     }
     .active-carousel img {
-        transform: translateY(0rem);
         opacity: 1;
         transition: 1.5s ease;
     }
