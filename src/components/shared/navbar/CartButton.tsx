@@ -27,7 +27,7 @@ const CartButton = () => {
                 data-tooltip="Cart"
             >
                 <FiShoppingCart className="text-2xl hover:text-amber-400 transition-colors" />
-                <Badge className="bg-amber-400 absolute -top-2 -right-3">
+                <Badge className="bg-lime-500 text-gray-50 absolute -top-2 -right-3">
                     {cart.length}
                 </Badge>
             </button>

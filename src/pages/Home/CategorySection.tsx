@@ -17,7 +17,7 @@ const CategorySection = () => {
                     <img
                         src={men}
                         alt="men"
-                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300 opacity-70"
+                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300"
                     />
                 </div>
                 <h3
@@ -36,7 +36,7 @@ const CategorySection = () => {
                     <img
                         src={women}
                         alt="women"
-                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300 opacity-85"
+                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300"
                     />
                 </div>
                 <h3
@@ -54,7 +54,7 @@ const CategorySection = () => {
                     <img
                         src={kids}
                         alt="kids"
-                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300 opacity-85"
+                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300"
                     />
                 </div>
                 <h3
@@ -72,7 +72,7 @@ const CategorySection = () => {
                     <img
                         src={accesories}
                         alt="accesories"
-                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300 opacity-85"
+                        className="h-full w-full group-hover:scale-125 object-contain object-center transition-transform duration-300"
                     />
                 </div>
                 <h3

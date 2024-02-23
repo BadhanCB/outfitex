@@ -30,6 +30,7 @@ const BannerItem = ({ img, productName, title, slug, activeIndex }: Props) => {
             </div>
             <div className="order-1 md:order-2">
                 <img
+                    loading="lazy"
                     src={`data:${img?.type};base64, ${img?.data}`}
                     alt={productName}
                     className="h-60 md:h-[450px] lg:h-[500px] xl:h-[575px] w-auto"

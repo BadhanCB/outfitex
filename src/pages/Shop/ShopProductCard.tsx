@@ -25,9 +25,9 @@ const ShopProductCard = ({ product, colNum }: Props) => {
                 } bg-gray-200 relative`}
             >
                 <img
+                    loading="lazy"
                     src={`data:${product?.image?.type};base64, ${product?.image?.data}`}
                     alt={product.name}
-                    loading="lazy"
                     className="h-full w-full object-cover"
                     draggable={false}
                 />
