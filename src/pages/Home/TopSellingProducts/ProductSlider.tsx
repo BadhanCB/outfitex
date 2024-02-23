@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Product } from "../../../types";
 import AddtoCartBtn from "../../../components/ui/AddtoCartBtn";
@@ -12,22 +12,22 @@ type Props = {
 
 const ProductSlider = ({ products }: Props) => {
     const cardRef = useRef<HTMLDivElement | null>(null);
-    const [carouselElem, setCarouselElem] = useState<HTMLElement>(
-        document.querySelector(".carousel") as HTMLElement
-    );
-
-    useEffect(() => {
-        setCarouselElem(document.querySelector(".carousel") as HTMLElement);
-    }, []);
+    const sliderRef = useRef<HTMLDivElement | null>(null);
 
     const handleNext = () => {
         const cardElem = cardRef.current;
-        carouselElem.scrollLeft += (cardElem?.offsetWidth || 0) + 48;
+        const sliderElem = sliderRef.current;
+        if (cardElem && sliderElem) {
+            sliderElem.scrollLeft += cardElem?.offsetWidth + 48;
+        }
     };
 
     const handlePrev = () => {
         const cardElem = cardRef.current;
-        carouselElem.scrollLeft += -((cardElem?.offsetWidth || 0) + 48);
+        const sliderElem = sliderRef.current;
+        if (cardElem && sliderElem) {
+            sliderElem.scrollLeft += -(cardElem?.offsetWidth + 48);
+        }
     };
 
     return (
@@ -46,7 +46,10 @@ const ProductSlider = ({ products }: Props) => {
                     <FiChevronRight />
                 </button>
             </div>
-            <div className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto scroll-smooth snap-mandatory snap-x">
+            <div
+                ref={sliderRef}
+                className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto scroll-smooth snap-mandatory snap-x"
+            >
                 {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
                 {!products.length
                     ? null
