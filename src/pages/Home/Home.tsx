@@ -3,14 +3,14 @@ import BannerSection from "./BannerSection/BannerSection";
 import CategorySection from "./CategorySection";
 import LatestProducts from "./LatestProducts/LatestProducts";
 import ServiceOffer from "./ServiceOffer";
-import TopSellingProducts from "./TopSellingProducts/TopSellingProducts";
+import TopSellingProductsV2 from "./TopSellingProductsV2/TopSellingProductsv2";
 
 const Home = () => {
     return (
         <>
             <BannerSection />
             <CategorySection />
-            <TopSellingProducts />
+            <TopSellingProductsV2 />
             <BrandPartners />
             <LatestProducts />
             <ServiceOffer />

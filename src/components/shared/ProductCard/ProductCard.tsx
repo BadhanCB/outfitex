@@ -16,7 +16,11 @@ const ProductCard = ({ product }: Props) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            className="h-full w-full bg-gray-50 group overflow-hidden"
+            whileHover={{
+                y: -5,
+                scale: 1.05,
+            }}
+            className="h-full w-full bg-gray-50 hover:bg-white hover:shadow-xl group overflow-hidden"
         >
             <div className="h-96 w-full bg-gray-200 relative">
                 <img

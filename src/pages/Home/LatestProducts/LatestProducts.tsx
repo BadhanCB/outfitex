@@ -21,7 +21,7 @@ const LatestProducts = () => {
     }, []);
 
     const varients = {
-        initial: { opacity: 0, y: -50 },
+        initial: { opacity: 0, y: -100 },
         animate: {
             opacity: 1,
             y: 0,
@@ -31,12 +31,12 @@ const LatestProducts = () => {
 
     return (
         <section className="bg-gray-50 py-20">
-            <motion.div className="wrapper px-4 md:px-8 lg:px-12">
-                <motion.div
-                    variants={varients}
-                    initial="initial"
-                    whileInView="animate"
-                >
+            <motion.div
+                initial="initial"
+                whileInView="animate"
+                className="wrapper px-4 md:px-8 lg:px-12"
+            >
+                <motion.div variants={varients}>
                     <motion.h2
                         variants={varients}
                         className="text-2xl md:text-2xl lg:text-4xl text-center"
@@ -51,7 +51,10 @@ const LatestProducts = () => {
                     </motion.p>
                 </motion.div>
 
-                <div className="mt-4 overflow-hidden">
+                <motion.div
+                    variants={varients}
+                    className="mt-4 overflow-hidden"
+                >
                     <FilterOptions
                         collection={collection}
                         setCollection={setCollection}
@@ -65,7 +68,7 @@ const LatestProducts = () => {
                             collection={collection}
                         />
                     )}
-                </div>
+                </motion.div>
             </motion.div>
         </section>
     );

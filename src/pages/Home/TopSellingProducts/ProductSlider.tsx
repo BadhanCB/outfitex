@@ -12,13 +12,14 @@ import AddtoCartBtn from "../../../components/ui/AddtoCartBtn";
 import AddtoWishListBtn from "../../../components/ui/AddtoWishListBtn";
 import { Link } from "react-router-dom";
 import ViewProductLinkBtn from "../../../components/ui/ViewProductLinkBtn";
-import { motion } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 
 type Props = {
     products: Product[];
+    variants?: Variants;
 };
 
-const ProductSlider = ({ products }: Props) => {
+const ProductSlider = ({ products, variants }: Props) => {
     const cardRef = useRef<HTMLDivElement | null>(null);
     const sliderRef = useRef<HTMLDivElement | null>(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -109,18 +110,6 @@ const ProductSlider = ({ products }: Props) => {
         }
     };
 
-    const varients = {
-        initial: { y: 200, opacity: 0 },
-        animate: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 1,
-                staggerChildren: 0.2,
-            },
-        },
-    };
-
     return (
         <div className="relative overflow-hidden hover:cursor-grab">
             <div className="text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-end gap-2 w-full my-4">
@@ -140,9 +129,7 @@ const ProductSlider = ({ products }: Props) => {
             <motion.div
                 ref={sliderRef}
                 className="hide-scrollbar grid gap-12 grid-flow-col auto-cols-[100%] md:auto-cols-[calc((100%_-_9rem)_/_2)] lg:auto-cols-[calc((100%_-_9rem)_/_3)] xl:auto-cols-[calc((100%_-_9rem)_/_4)] overflow-x-auto overflow-y-hidden scroll-smooth snap-mandatory snap-x"
-                variants={varients}
-                initial="initial"
-                whileInView="animate"
+                variants={variants}
                 // handling mouse event
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
@@ -156,8 +143,7 @@ const ProductSlider = ({ products }: Props) => {
                           <motion.div
                               ref={cardRef}
                               key={product._id}
-                              className="h-full w-full bg-gray-50 group overflow-hidden snap-start"
-                              variants={varients}
+                              className="h-full w-full bg-gray-50 hover:bg-white group overflow-hidden snap-start"
                           >
                               <div className="h-96 w-full bg-gray-200 relative">
                                   <img

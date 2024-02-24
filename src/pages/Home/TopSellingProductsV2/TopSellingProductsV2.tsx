@@ -1,10 +1,10 @@
 import { lazy, useEffect, useState } from "react";
 import { Product } from "../../../types";
 import TopSellingSectionSkeleton from "../../../components/shared/skeletons/TopSellingSectionSkeleton";
-const ProductSlider = lazy(() => import("./ProductSlider"));
+const ProductSlider = lazy(() => import("./ProductSliderV2"));
 import { motion } from "framer-motion";
 
-const TopSellingProducts = () => {
+const TopSellingProductsV2 = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -37,18 +37,21 @@ const TopSellingProducts = () => {
                 variants={varients}
                 initial="initial"
                 whileInView="animate"
-                className="wrapper"
+                className="wrapper grid grid-cols-4 gap-12 items-center"
             >
-                <motion.div variants={varients}>
+                <motion.div
+                    variants={varients}
+                    className="col-span-4 md:col-span-1"
+                >
                     <motion.h2
                         variants={varients}
-                        className="text-2xl md:text-2xl lg:text-4xl text-center"
+                        className="text-2xl md:text-2xl lg:text-3xl xl:text-4xl text-center tracking-wider"
                     >
-                        Our Best Selling Items
+                        Our Top Selling Items
                     </motion.h2>
                     <motion.p
                         variants={varients}
-                        className="text-lg text-center"
+                        className="text-lg text-center text-gray-500"
                     >
                         Product in focus
                     </motion.p>
@@ -63,4 +66,4 @@ const TopSellingProducts = () => {
     );
 };
 
-export default TopSellingProducts;
+export default TopSellingProductsV2;
