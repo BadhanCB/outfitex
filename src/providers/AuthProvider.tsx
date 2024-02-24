@@ -49,6 +49,29 @@ const AuthProvider = ({ children }: Props) => {
         clearTokenCookie();
     };
 
+    const reAuthenticate = () => {
+        if (getTokenFromCookie()) {
+            setIsLoading(true);
+            fetch(
+                `${import.meta.env.VITE_API_BASE_URL}/authenticate-with-jwt`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getTokenFromCookie()}`,
+                    },
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    setUser(data.info);
+                    setTokenToCookie(data.token);
+                    setIsLoading(false);
+                })
+                .catch(() => {
+                    setIsLoading(false);
+                });
+        }
+    };
+
     return (
         <AUTH_CONTEXT.Provider
             value={{
@@ -61,6 +84,7 @@ const AuthProvider = ({ children }: Props) => {
                 setCart,
                 wishlist,
                 setWishList,
+                reAuthenticate,
             }}
         >
             {children}

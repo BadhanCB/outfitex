@@ -16,8 +16,8 @@ const DashboardLayout = () => {
         <section className="wrapper grid grid-cols-12 gap-6 py-12 px-4 md:px-8 lg:px-12">
             <section className="col-span-12 md:col-span-3 lg:col-span-2">
                 <ul className="text-xl flex flex-col gap-4">
-                    {dashboardOptions.map((option) => (
-                        <li>
+                    {dashboardOptions.map((option, i) => (
+                        <li key={i}>
                             <Link
                                 className={`flex gap-1 items-center w-max ${
                                     pathName === option.path && "text-amber-500"

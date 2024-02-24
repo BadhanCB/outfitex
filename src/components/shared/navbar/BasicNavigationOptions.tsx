@@ -73,7 +73,7 @@ const BasicNavigationOptions = () => {
                 </NavLink>
             </motion.li>
             {user?.role === "user" ? (
-                <motion.li variants={varients}>
+                <li>
                     <NavLink
                         className={({ isActive }) =>
                             isActive
@@ -84,9 +84,9 @@ const BasicNavigationOptions = () => {
                     >
                         Dashboard
                     </NavLink>
-                </motion.li>
+                </li>
             ) : user?.role === "seller" ? (
-                <motion.li variants={varients}>
+                <li>
                     <NavLink
                         className={({ isActive }) =>
                             isActive
@@ -97,10 +97,10 @@ const BasicNavigationOptions = () => {
                     >
                         Inventory
                     </NavLink>
-                </motion.li>
+                </li>
             ) : (
                 user?.role === "admin" && (
-                    <motion.li variants={varients}>
+                    <li>
                         <NavLink
                             className={({ isActive }) =>
                                 isActive
@@ -111,7 +111,7 @@ const BasicNavigationOptions = () => {
                         >
                             Admin Panel
                         </NavLink>
-                    </motion.li>
+                    </li>
                 )
             )}
         </motion.div>

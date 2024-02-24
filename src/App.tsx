@@ -37,8 +37,8 @@ const UserOrders = lazy(() => import("./pages/UserOrders/UserOrders"));
 const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
 
 //Private Routes
-import SellerPrivateRoute from "./routes/SellerPrivateRoute";
-import UserPrivateRoute from "./routes/UserPrivateRoute";
+const SellerPrivateRoute = lazy(() => import("./routes/SellerPrivateRoute"));
+const UserPrivateRoute = lazy(() => import("./routes/UserPrivateRoute"));
 
 function App() {
     const router = createBrowserRouter([

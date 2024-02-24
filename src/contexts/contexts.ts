@@ -11,6 +11,7 @@ interface IAUTH_Context {
     setCart: Dispatch<SetStateAction<CartItemType[]>>;
     wishlist: WishListType[];
     setWishList: Dispatch<SetStateAction<WishListType[]>>;
+    reAuthenticate: () => void;
 }
 
 export const AUTH_CONTEXT = createContext<IAUTH_Context>({
@@ -23,4 +24,5 @@ export const AUTH_CONTEXT = createContext<IAUTH_Context>({
     setCart: () => {},
     wishlist: [],
     setWishList: () => {},
+    reAuthenticate: () => {},
 });
