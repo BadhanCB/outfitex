@@ -1,4 +1,11 @@
-import { useRef } from "react";
+import {
+    MouseEvent,
+    MouseEventHandler,
+    startTransition,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Product } from "../../../types";
 import AddtoCartBtn from "../../../components/ui/AddtoCartBtn";
@@ -14,20 +21,91 @@ type Props = {
 const ProductSlider = ({ products }: Props) => {
     const cardRef = useRef<HTMLDivElement | null>(null);
     const sliderRef = useRef<HTMLDivElement | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [pageX, setPageX] = useState(0);
+    const cardElem = cardRef.current;
+    const sliderElem = sliderRef.current;
+
+    useEffect(() => {
+        const sliderInteral = setInterval(() => {
+            if (cardElem && sliderElem && !isDragging) {
+                sliderElem.scrollLeft += cardElem?.offsetWidth + 48;
+                //total scrollable width = sliderElem.scrollWidth - sliderElem.offsetWidth
+                if (
+                    sliderElem.scrollWidth - sliderElem.offsetWidth ===
+                    Math.ceil(sliderElem.scrollLeft)
+                ) {
+                    sliderElem.scrollLeft = 0;
+                }
+            }
+        }, 5000);
+
+        return () => {
+            clearInterval(sliderInteral);
+        };
+    }, [cardElem, sliderElem, isDragging]);
 
     const handleNext = () => {
-        const cardElem = cardRef.current;
-        const sliderElem = sliderRef.current;
         if (cardElem && sliderElem) {
             sliderElem.scrollLeft += cardElem?.offsetWidth + 48;
+            //total scrollable width = sliderElem.scrollWidth - sliderElem.offsetWidth
+            if (
+                sliderElem.scrollWidth - sliderElem.offsetWidth ===
+                    Math.ceil(sliderElem.scrollLeft) ||
+                sliderElem.scrollWidth - sliderElem.offsetWidth ===
+                    Math.floor(sliderElem.scrollLeft)
+            ) {
+                sliderElem.scrollLeft = 0;
+            }
         }
     };
 
     const handlePrev = () => {
-        const cardElem = cardRef.current;
-        const sliderElem = sliderRef.current;
         if (cardElem && sliderElem) {
             sliderElem.scrollLeft += -(cardElem?.offsetWidth + 48);
+            if (sliderElem.scrollLeft === 0) {
+                sliderElem.scrollLeft =
+                    sliderElem.scrollWidth - sliderElem.offsetWidth;
+            }
+        }
+    };
+
+    //mouse event handlers
+    const handleMouseDown: MouseEventHandler<HTMLDivElement> = (
+        e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+    ) => {
+        setIsDragging(true);
+        if (sliderElem) {
+            startTransition(() => setPageX(e.pageX - sliderElem.offsetLeft));
+        }
+    };
+
+    const handleMouseUp: MouseEventHandler<HTMLDivElement> = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseLeave: MouseEventHandler<HTMLDivElement> = () => {
+        setIsDragging(false);
+    };
+
+    let isSignificantMove = false;
+    const handleMouseMove: MouseEventHandler<HTMLDivElement> = (
+        e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+    ) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const x = pageX - e.pageX;
+        const threshold = 10;
+
+        if (Math.abs(x) > threshold) {
+            isSignificantMove = true;
+        }
+
+        if (sliderElem && isSignificantMove) {
+            sliderElem.scrollLeft += x;
+
+            isSignificantMove = false;
         }
     };
 
@@ -44,7 +122,7 @@ const ProductSlider = ({ products }: Props) => {
     };
 
     return (
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hover:cursor-grab">
             <div className="text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-end gap-2 w-full my-4">
                 <button
                     onClick={handlePrev}
@@ -65,6 +143,11 @@ const ProductSlider = ({ products }: Props) => {
                 variants={varients}
                 initial="initial"
                 whileInView="animate"
+                // handling mouse event
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
             >
                 {/*3rem gap applied 3 times between 4 column so, 9rem subtract from 100%*/}
                 {!products.length

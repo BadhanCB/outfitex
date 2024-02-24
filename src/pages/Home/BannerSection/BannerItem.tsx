@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import OutlineButton from "../../../components/ui/OutlineButton";
 import { motion } from "framer-motion";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
     title?: string;
@@ -11,9 +12,17 @@ type Props = {
     };
     slug?: string;
     activeIndex: number;
+    setIsInteractingWithBtn: Dispatch<SetStateAction<boolean>>;
 };
 
-const BannerItem = ({ img, productName, title, slug, activeIndex }: Props) => {
+const BannerItem = ({
+    img,
+    productName,
+    title,
+    slug,
+    activeIndex,
+    setIsInteractingWithBtn,
+}: Props) => {
     const varients = {
         initial: { opacity: 0, y: -50 },
         animate: {
@@ -48,7 +57,11 @@ const BannerItem = ({ img, productName, title, slug, activeIndex }: Props) => {
                 </motion.h1>
 
                 <motion.div variants={varients}>
-                    <Link to={`/product/${slug}`}>
+                    <Link
+                        to={`/product/${slug}`}
+                        onMouseEnter={() => setIsInteractingWithBtn(true)}
+                        onMouseLeave={() => setIsInteractingWithBtn(false)}
+                    >
                         <OutlineButton className="hover:bg-slate-900 hover:text-gray-50 transition duration-300 carousel-btn">
                             Explore Now
                         </OutlineButton>

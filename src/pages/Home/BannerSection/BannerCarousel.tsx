@@ -141,6 +141,7 @@ const BannerCarousel = ({ featuredProducts }: Props) => {
                               title={itm.category}
                               slug={itm.slug}
                               activeIndex={activeIndex}
+                              setIsInteractingWithBtn={setIsInteractingWithBtn}
                           />
                       ))}
             </div>

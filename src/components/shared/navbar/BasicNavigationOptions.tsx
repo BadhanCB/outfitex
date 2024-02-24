@@ -1,12 +1,30 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { motion } from "framer-motion";
 
 const BasicNavigationOptions = () => {
     const { user } = useAuth();
 
+    const varients = {
+        initial: { opacity: 0, y: -30 },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1,
+                staggerChildren: 0.3,
+            },
+        },
+    };
+
     return (
-        <div className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto uppercase">
-            <li>
+        <motion.div
+            variants={varients}
+            initial="initial"
+            whileInView="animate"
+            className="hidden md:flex items-center gap-4 md:gap-6 xl:gap-8 mx-auto uppercase"
+        >
+            <motion.li variants={varients}>
                 <NavLink
                     className={({ isActive }) =>
                         isActive
@@ -17,8 +35,8 @@ const BasicNavigationOptions = () => {
                 >
                     Home
                 </NavLink>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={varients}>
                 <NavLink
                     className={({ isActive }) =>
                         isActive
@@ -29,8 +47,8 @@ const BasicNavigationOptions = () => {
                 >
                     Shop
                 </NavLink>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={varients}>
                 <NavLink
                     className={({ isActive }) =>
                         isActive
@@ -41,8 +59,8 @@ const BasicNavigationOptions = () => {
                 >
                     Blogs
                 </NavLink>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={varients}>
                 <NavLink
                     className={({ isActive }) =>
                         isActive
@@ -53,9 +71,9 @@ const BasicNavigationOptions = () => {
                 >
                     About
                 </NavLink>
-            </li>
+            </motion.li>
             {user?.role === "user" ? (
-                <li>
+                <motion.li variants={varients}>
                     <NavLink
                         className={({ isActive }) =>
                             isActive
@@ -66,9 +84,9 @@ const BasicNavigationOptions = () => {
                     >
                         Dashboard
                     </NavLink>
-                </li>
+                </motion.li>
             ) : user?.role === "seller" ? (
-                <li>
+                <motion.li variants={varients}>
                     <NavLink
                         className={({ isActive }) =>
                             isActive
@@ -79,10 +97,10 @@ const BasicNavigationOptions = () => {
                     >
                         Inventory
                     </NavLink>
-                </li>
+                </motion.li>
             ) : (
                 user?.role === "admin" && (
-                    <li>
+                    <motion.li variants={varients}>
                         <NavLink
                             className={({ isActive }) =>
                                 isActive
@@ -93,10 +111,10 @@ const BasicNavigationOptions = () => {
                         >
                             Admin Panel
                         </NavLink>
-                    </li>
+                    </motion.li>
                 )
             )}
-        </div>
+        </motion.div>
     );
 };
 

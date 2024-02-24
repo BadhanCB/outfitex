@@ -4,8 +4,21 @@ import LeftSideBar from "./LeftSideBar";
 import OfferNotificationBar from "./OfferNotificationBar";
 import BasicNavigationOptions from "./BasicNavigationOptions";
 import UserInteractionOption from "./UserInteractionOption";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
+    const varients = {
+        initial: { opacity: 0, x: 100 },
+        animate: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 1,
+                staggerChildren: 0.3,
+            },
+        },
+    };
+
     return (
         <header className="sticky top-0 z-50">
             <OfferNotificationBar />
@@ -26,9 +39,21 @@ const Navbar = () => {
                                     alt="outfitex logo"
                                     className="h-5 md:h-6 lg:h-7 xl:h-8 w-auto"
                                 />
-                                <p className="text-lg md:text-xl lg:text-3xl">
-                                    outfitex
-                                </p>
+                                <motion.p
+                                    variants={varients}
+                                    initial="initial"
+                                    whileInView="animate"
+                                    className="text-lg md:text-xl lg:text-3xl"
+                                >
+                                    {"outfitex".split("").map((w, i) => (
+                                        <motion.span
+                                            variants={varients}
+                                            key={i}
+                                        >
+                                            {w}
+                                        </motion.span>
+                                    ))}
+                                </motion.p>
                             </Link>
                         </li>
                     </div>
