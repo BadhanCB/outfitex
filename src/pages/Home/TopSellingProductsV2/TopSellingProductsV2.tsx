@@ -1,8 +1,8 @@
 import { lazy, useEffect, useState } from "react";
 import { Product } from "../../../types";
-import TopSellingSectionSkeleton from "../../../components/shared/skeletons/TopSellingSectionSkeleton";
-const ProductSlider = lazy(() => import("./ProductSliderV2"));
 import { motion } from "framer-motion";
+const ProductSlider = lazy(() => import("./ProductSliderV2"));
+import TopSellingSectionSkeletonV2 from "../../../components/shared/skeletons/TopSellingSectionSkeletonV2";
 
 const TopSellingProductsV2 = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -57,7 +57,7 @@ const TopSellingProductsV2 = () => {
                     </motion.p>
                 </motion.div>
                 {isLoading ? (
-                    <TopSellingSectionSkeleton />
+                    <TopSellingSectionSkeletonV2 />
                 ) : (
                     <ProductSlider products={products} />
                 )}
